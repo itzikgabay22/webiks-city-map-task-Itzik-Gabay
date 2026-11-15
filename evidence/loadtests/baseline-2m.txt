@@ -1,0 +1,1266 @@
+docker run --rm -i --user "$(id -u):$(id -g)" --network k3d-citymap -v "/Users/itzikgabay/Downloads/webiks-city-map-task-2026-10-20/code":/work -w /work grafana/k6:2.3.0 run --summary-export=traffic/results/baseline-2m.json -e BASE_URL=http://k3d-citymap-serverlb -e SCENARIO=baseline -e DURATION=2m traffic/main.ts
+Unable to find image 'grafana/k6:2.3.0' locally
+2.3.0: Pulling from grafana/k6
+4f4fb700ef54: Pulling fs layer
+9e62a71def60: Pulling fs layer
+5de55e5ef9c0: Pulling fs layer
+5e19faadb140: Pulling fs layer
+4f4fb700ef54: Already exists
+4f4fb700ef54: Pull complete
+9e62a71def60: Download complete
+44136fa355b3: Already exists
+a21bc1259d8b: Download complete
+5e19faadb140: Download complete
+5de55e5ef9c0: Download complete
+9e62a71def60: Pull complete
+5de55e5ef9c0: Pull complete
+5e19faadb140: Pull complete
+Digest: sha256:2dd4756ec6e14e62778916e1eb850108e4b499304c02df56760fa0bdb0fba0b8
+Status: Downloaded newer image for grafana/k6:2.3.0
+
+         /\      Grafana   /‾‾/  
+    /\  /  \     |\  __   /  /   
+   /  \/    \    | |/ /  /   ‾‾\ 
+  /          \   |   (  |  (‾)  |
+ / __________ \  |_|\_\  \_____/ 
+
+
+     execution: local
+        script: traffic/main.ts
+        output: -
+
+     scenarios: (100.00%) 8 scenarios, 1396 max VUs, 2m30s max duration (incl. graceful stop):
+              * address_search: 8.00 iterations/s for 2m0s (maxVUs: 18-245, exec: address_search, gracefulStop: 30s)
+              * geojson_export: 0.03 iterations/s for 2m0s (maxVUs: 3-6, exec: geojson_export, gracefulStop: 30s)
+              * map_click: 5.00 iterations/s for 2m0s (maxVUs: 12-155, exec: map_click, gracefulStop: 30s)
+              * page_load: 1.50 iterations/s for 2m0s (maxVUs: 5-50, exec: page_load, gracefulStop: 30s)
+              * partner_pitlane: 7.00 iterations/s for 2m0s (maxVUs: 16-215, exec: partner_pitlane, gracefulStop: 30s)
+              * partner_transit: 14.00 iterations/s for 2m0s (maxVUs: 30-400, exec: partner_transit, gracefulStop: 30s)
+              * planner_session: 0.50 iterations/s for 2m0s (maxVUs: 3-20, exec: planner_session, gracefulStop: 30s)
+              * tiles: 10.00 iterations/s for 2m0s (maxVUs: 22-305, exec: tiles, gracefulStop: 30s)
+
+
+running (0m01.0s), 0000/0109 VUs, 48 complete and 0 interrupted iterations
+address_search    [   1% ] 000/018 VUs  0m00.9s/2m0s  8.00 iters/s
+geojson_export    [   1% ] 0/3 VUs      0m00.9s/2m0s  0.03 iters/s
+map_click         [   1% ] 000/012 VUs  0m00.9s/2m0s  5.00 iters/s
+page_load         [   1% ] 00/05 VUs    0m00.9s/2m0s  1.50 iters/s
+partner_pitlane   [   1% ] 000/016 VUs  0m00.9s/2m0s  7.00 iters/s
+partner_transit   [   1% ] 000/030 VUs  0m00.9s/2m0s  14.00 iters/s
+planner_session   [   1% ] 00/03 VUs    0m00.9s/2m0s  0.50 iters/s
+tiles             [   1% ] 000/022 VUs  0m00.9s/2m0s  10.00 iters/s
+
+running (0m02.0s), 0001/0109 VUs, 92 complete and 0 interrupted iterations
+address_search    [   2% ] 000/018 VUs  0m01.9s/2m0s  8.00 iters/s
+geojson_export    [   2% ] 0/3 VUs      0m01.9s/2m0s  0.03 iters/s
+map_click         [   2% ] 001/012 VUs  0m01.9s/2m0s  5.00 iters/s
+page_load         [   2% ] 00/05 VUs    0m01.9s/2m0s  1.50 iters/s
+partner_pitlane   [   2% ] 000/016 VUs  0m01.9s/2m0s  7.00 iters/s
+partner_transit   [   2% ] 000/030 VUs  0m01.9s/2m0s  14.00 iters/s
+planner_session   [   2% ] 00/03 VUs    0m01.9s/2m0s  0.50 iters/s
+tiles             [   2% ] 000/022 VUs  0m01.9s/2m0s  10.00 iters/s
+
+running (0m03.0s), 0000/0109 VUs, 140 complete and 0 interrupted iterations
+address_search    [   2% ] 000/018 VUs  0m03.0s/2m0s  8.00 iters/s
+geojson_export    [   2% ] 0/3 VUs      0m02.9s/2m0s  0.03 iters/s
+map_click         [   2% ] 000/012 VUs  0m02.9s/2m0s  5.00 iters/s
+page_load         [   2% ] 00/05 VUs    0m03.0s/2m0s  1.50 iters/s
+partner_pitlane   [   2% ] 000/016 VUs  0m03.0s/2m0s  7.00 iters/s
+partner_transit   [   2% ] 000/030 VUs  0m02.9s/2m0s  14.00 iters/s
+planner_session   [   2% ] 00/03 VUs    0m02.9s/2m0s  0.50 iters/s
+tiles             [   2% ] 000/022 VUs  0m03.0s/2m0s  10.00 iters/s
+
+running (0m04.0s), 0000/0109 VUs, 185 complete and 0 interrupted iterations
+address_search    [   3% ] 000/018 VUs  0m03.9s/2m0s  8.00 iters/s
+geojson_export    [   3% ] 0/3 VUs      0m03.9s/2m0s  0.03 iters/s
+map_click         [   3% ] 000/012 VUs  0m03.9s/2m0s  5.00 iters/s
+page_load         [   3% ] 00/05 VUs    0m03.9s/2m0s  1.50 iters/s
+partner_pitlane   [   3% ] 000/016 VUs  0m03.9s/2m0s  7.00 iters/s
+partner_transit   [   3% ] 000/030 VUs  0m03.9s/2m0s  14.00 iters/s
+planner_session   [   3% ] 00/03 VUs    0m03.9s/2m0s  0.50 iters/s
+tiles             [   3% ] 000/022 VUs  0m03.9s/2m0s  10.00 iters/s
+
+running (0m05.0s), 0000/0109 VUs, 232 complete and 0 interrupted iterations
+address_search    [   4% ] 000/018 VUs  0m04.9s/2m0s  8.00 iters/s
+geojson_export    [   4% ] 0/3 VUs      0m04.9s/2m0s  0.03 iters/s
+map_click         [   4% ] 000/012 VUs  0m04.9s/2m0s  5.00 iters/s
+page_load         [   4% ] 00/05 VUs    0m04.9s/2m0s  1.50 iters/s
+partner_pitlane   [   4% ] 000/016 VUs  0m04.9s/2m0s  7.00 iters/s
+partner_transit   [   4% ] 000/030 VUs  0m04.9s/2m0s  14.00 iters/s
+planner_session   [   4% ] 00/03 VUs    0m04.9s/2m0s  0.50 iters/s
+tiles             [   4% ] 000/022 VUs  0m04.9s/2m0s  10.00 iters/s
+
+running (0m06.0s), 0000/0109 VUs, 277 complete and 0 interrupted iterations
+address_search    [   5% ] 000/018 VUs  0m05.9s/2m0s  8.00 iters/s
+geojson_export    [   5% ] 0/3 VUs      0m05.9s/2m0s  0.03 iters/s
+map_click         [   5% ] 000/012 VUs  0m05.9s/2m0s  5.00 iters/s
+page_load         [   5% ] 00/05 VUs    0m05.9s/2m0s  1.50 iters/s
+partner_pitlane   [   5% ] 000/016 VUs  0m05.9s/2m0s  7.00 iters/s
+partner_transit   [   5% ] 000/030 VUs  0m05.9s/2m0s  14.00 iters/s
+planner_session   [   5% ] 00/03 VUs    0m05.9s/2m0s  0.50 iters/s
+tiles             [   5% ] 000/022 VUs  0m05.9s/2m0s  10.00 iters/s
+
+running (0m07.0s), 0000/0109 VUs, 324 complete and 0 interrupted iterations
+address_search    [   6% ] 000/018 VUs  0m06.9s/2m0s  8.00 iters/s
+geojson_export    [   6% ] 0/3 VUs      0m06.9s/2m0s  0.03 iters/s
+map_click         [   6% ] 000/012 VUs  0m06.9s/2m0s  5.00 iters/s
+page_load         [   6% ] 00/05 VUs    0m06.9s/2m0s  1.50 iters/s
+partner_pitlane   [   6% ] 000/016 VUs  0m06.9s/2m0s  7.00 iters/s
+partner_transit   [   6% ] 000/030 VUs  0m06.9s/2m0s  14.00 iters/s
+planner_session   [   6% ] 00/03 VUs    0m06.9s/2m0s  0.50 iters/s
+tiles             [   6% ] 000/022 VUs  0m07.0s/2m0s  10.00 iters/s
+
+running (0m08.0s), 0000/0109 VUs, 369 complete and 0 interrupted iterations
+address_search    [   7% ] 000/018 VUs  0m07.9s/2m0s  8.00 iters/s
+geojson_export    [   7% ] 0/3 VUs      0m07.9s/2m0s  0.03 iters/s
+map_click         [   7% ] 000/012 VUs  0m07.9s/2m0s  5.00 iters/s
+page_load         [   7% ] 00/05 VUs    0m07.9s/2m0s  1.50 iters/s
+partner_pitlane   [   7% ] 000/016 VUs  0m07.9s/2m0s  7.00 iters/s
+partner_transit   [   7% ] 000/030 VUs  0m07.9s/2m0s  14.00 iters/s
+planner_session   [   7% ] 00/03 VUs    0m07.9s/2m0s  0.50 iters/s
+tiles             [   7% ] 000/022 VUs  0m07.9s/2m0s  10.00 iters/s
+
+running (0m09.0s), 0000/0109 VUs, 416 complete and 0 interrupted iterations
+address_search    [   7% ] 000/018 VUs  0m09.0s/2m0s  8.00 iters/s
+geojson_export    [   7% ] 0/3 VUs      0m08.9s/2m0s  0.03 iters/s
+map_click         [   7% ] 000/012 VUs  0m08.9s/2m0s  5.00 iters/s
+page_load         [   7% ] 00/05 VUs    0m09.0s/2m0s  1.50 iters/s
+partner_pitlane   [   7% ] 000/016 VUs  0m08.9s/2m0s  7.00 iters/s
+partner_transit   [   7% ] 000/030 VUs  0m08.9s/2m0s  14.00 iters/s
+planner_session   [   7% ] 00/03 VUs    0m08.9s/2m0s  0.50 iters/s
+tiles             [   7% ] 000/022 VUs  0m09.0s/2m0s  10.00 iters/s
+
+running (0m10.0s), 0000/0109 VUs, 461 complete and 0 interrupted iterations
+address_search    [   8% ] 000/018 VUs  0m09.9s/2m0s  8.00 iters/s
+geojson_export    [   8% ] 0/3 VUs      0m09.9s/2m0s  0.03 iters/s
+map_click         [   8% ] 000/012 VUs  0m09.9s/2m0s  5.00 iters/s
+page_load         [   8% ] 00/05 VUs    0m09.9s/2m0s  1.50 iters/s
+partner_pitlane   [   8% ] 000/016 VUs  0m09.9s/2m0s  7.00 iters/s
+partner_transit   [   8% ] 000/030 VUs  0m09.9s/2m0s  14.00 iters/s
+planner_session   [   8% ] 00/03 VUs    0m09.9s/2m0s  0.50 iters/s
+tiles             [   8% ] 000/022 VUs  0m10.0s/2m0s  10.00 iters/s
+
+running (0m11.0s), 0000/0109 VUs, 508 complete and 0 interrupted iterations
+address_search    [   9% ] 000/018 VUs  0m10.9s/2m0s  8.00 iters/s
+geojson_export    [   9% ] 0/3 VUs      0m10.9s/2m0s  0.03 iters/s
+map_click         [   9% ] 000/012 VUs  0m10.9s/2m0s  5.00 iters/s
+page_load         [   9% ] 00/05 VUs    0m10.9s/2m0s  1.50 iters/s
+partner_pitlane   [   9% ] 000/016 VUs  0m10.9s/2m0s  7.00 iters/s
+partner_transit   [   9% ] 000/030 VUs  0m10.9s/2m0s  14.00 iters/s
+planner_session   [   9% ] 00/03 VUs    0m10.9s/2m0s  0.50 iters/s
+tiles             [   9% ] 000/022 VUs  0m11.0s/2m0s  10.00 iters/s
+
+running (0m12.0s), 0000/0109 VUs, 553 complete and 0 interrupted iterations
+address_search    [  10% ] 000/018 VUs  0m11.9s/2m0s  8.00 iters/s
+geojson_export    [  10% ] 0/3 VUs      0m11.9s/2m0s  0.03 iters/s
+map_click         [  10% ] 000/012 VUs  0m11.9s/2m0s  5.00 iters/s
+page_load         [  10% ] 00/05 VUs    0m11.9s/2m0s  1.50 iters/s
+partner_pitlane   [  10% ] 000/016 VUs  0m11.9s/2m0s  7.00 iters/s
+partner_transit   [  10% ] 000/030 VUs  0m11.9s/2m0s  14.00 iters/s
+planner_session   [  10% ] 00/03 VUs    0m11.9s/2m0s  0.50 iters/s
+tiles             [  10% ] 000/022 VUs  0m11.9s/2m0s  10.00 iters/s
+
+running (0m13.0s), 0000/0109 VUs, 600 complete and 0 interrupted iterations
+address_search    [  11% ] 000/018 VUs  0m12.9s/2m0s  8.00 iters/s
+geojson_export    [  11% ] 0/3 VUs      0m12.9s/2m0s  0.03 iters/s
+map_click         [  11% ] 000/012 VUs  0m12.9s/2m0s  5.00 iters/s
+page_load         [  11% ] 00/05 VUs    0m12.9s/2m0s  1.50 iters/s
+partner_pitlane   [  11% ] 000/016 VUs  0m12.9s/2m0s  7.00 iters/s
+partner_transit   [  11% ] 000/030 VUs  0m12.9s/2m0s  14.00 iters/s
+planner_session   [  11% ] 00/03 VUs    0m12.9s/2m0s  0.50 iters/s
+tiles             [  11% ] 000/022 VUs  0m12.9s/2m0s  10.00 iters/s
+
+running (0m14.0s), 0000/0109 VUs, 645 complete and 0 interrupted iterations
+address_search    [  12% ] 000/018 VUs  0m13.9s/2m0s  8.00 iters/s
+geojson_export    [  12% ] 0/3 VUs      0m13.9s/2m0s  0.03 iters/s
+map_click         [  12% ] 000/012 VUs  0m13.9s/2m0s  5.00 iters/s
+page_load         [  12% ] 00/05 VUs    0m13.9s/2m0s  1.50 iters/s
+partner_pitlane   [  12% ] 000/016 VUs  0m13.9s/2m0s  7.00 iters/s
+partner_transit   [  12% ] 000/030 VUs  0m13.9s/2m0s  14.00 iters/s
+planner_session   [  12% ] 00/03 VUs    0m13.9s/2m0s  0.50 iters/s
+tiles             [  12% ] 000/022 VUs  0m13.9s/2m0s  10.00 iters/s
+
+running (0m15.0s), 0000/0109 VUs, 692 complete and 0 interrupted iterations
+address_search    [  12% ] 000/018 VUs  0m14.9s/2m0s  8.00 iters/s
+geojson_export    [  12% ] 0/3 VUs      0m14.9s/2m0s  0.03 iters/s
+map_click         [  12% ] 000/012 VUs  0m14.9s/2m0s  5.00 iters/s
+page_load         [  12% ] 00/05 VUs    0m14.9s/2m0s  1.50 iters/s
+partner_pitlane   [  12% ] 000/016 VUs  0m14.9s/2m0s  7.00 iters/s
+partner_transit   [  12% ] 000/030 VUs  0m14.9s/2m0s  14.00 iters/s
+planner_session   [  12% ] 00/03 VUs    0m14.9s/2m0s  0.50 iters/s
+tiles             [  12% ] 000/022 VUs  0m14.9s/2m0s  10.00 iters/s
+
+running (0m16.0s), 0001/0109 VUs, 736 complete and 0 interrupted iterations
+address_search    [  13% ] 000/018 VUs  0m15.9s/2m0s  8.00 iters/s
+geojson_export    [  13% ] 0/3 VUs      0m15.9s/2m0s  0.03 iters/s
+map_click         [  13% ] 001/012 VUs  0m15.9s/2m0s  5.00 iters/s
+page_load         [  13% ] 00/05 VUs    0m15.9s/2m0s  1.50 iters/s
+partner_pitlane   [  13% ] 000/016 VUs  0m15.9s/2m0s  7.00 iters/s
+partner_transit   [  13% ] 000/030 VUs  0m15.9s/2m0s  14.00 iters/s
+planner_session   [  13% ] 00/03 VUs    0m15.9s/2m0s  0.50 iters/s
+tiles             [  13% ] 000/022 VUs  0m15.9s/2m0s  10.00 iters/s
+
+running (0m17.0s), 0000/0109 VUs, 784 complete and 0 interrupted iterations
+address_search    [  14% ] 000/018 VUs  0m16.9s/2m0s  8.00 iters/s
+geojson_export    [  14% ] 0/3 VUs      0m16.9s/2m0s  0.03 iters/s
+map_click         [  14% ] 000/012 VUs  0m16.9s/2m0s  5.00 iters/s
+page_load         [  14% ] 00/05 VUs    0m16.9s/2m0s  1.50 iters/s
+partner_pitlane   [  14% ] 000/016 VUs  0m16.9s/2m0s  7.00 iters/s
+partner_transit   [  14% ] 000/030 VUs  0m16.9s/2m0s  14.00 iters/s
+planner_session   [  14% ] 00/03 VUs    0m16.9s/2m0s  0.50 iters/s
+tiles             [  14% ] 000/022 VUs  0m17.0s/2m0s  10.00 iters/s
+
+running (0m18.0s), 0000/0109 VUs, 829 complete and 0 interrupted iterations
+address_search    [  15% ] 000/018 VUs  0m18.0s/2m0s  8.00 iters/s
+geojson_export    [  15% ] 0/3 VUs      0m17.9s/2m0s  0.03 iters/s
+map_click         [  15% ] 000/012 VUs  0m17.9s/2m0s  5.00 iters/s
+page_load         [  15% ] 00/05 VUs    0m18.0s/2m0s  1.50 iters/s
+partner_pitlane   [  15% ] 000/016 VUs  0m17.9s/2m0s  7.00 iters/s
+partner_transit   [  15% ] 000/030 VUs  0m17.9s/2m0s  14.00 iters/s
+planner_session   [  15% ] 00/03 VUs    0m17.9s/2m0s  0.50 iters/s
+tiles             [  15% ] 000/022 VUs  0m18.0s/2m0s  10.00 iters/s
+
+running (0m19.0s), 0000/0109 VUs, 876 complete and 0 interrupted iterations
+address_search    [  16% ] 000/018 VUs  0m18.9s/2m0s  8.00 iters/s
+geojson_export    [  16% ] 0/3 VUs      0m18.9s/2m0s  0.03 iters/s
+map_click         [  16% ] 000/012 VUs  0m18.9s/2m0s  5.00 iters/s
+page_load         [  16% ] 00/05 VUs    0m18.9s/2m0s  1.50 iters/s
+partner_pitlane   [  16% ] 000/016 VUs  0m18.9s/2m0s  7.00 iters/s
+partner_transit   [  16% ] 000/030 VUs  0m18.9s/2m0s  14.00 iters/s
+planner_session   [  16% ] 00/03 VUs    0m18.9s/2m0s  0.50 iters/s
+tiles             [  16% ] 000/022 VUs  0m18.9s/2m0s  10.00 iters/s
+
+running (0m20.0s), 0000/0109 VUs, 921 complete and 0 interrupted iterations
+address_search    [  17% ] 000/018 VUs  0m19.9s/2m0s  8.00 iters/s
+geojson_export    [  17% ] 0/3 VUs      0m19.9s/2m0s  0.03 iters/s
+map_click         [  17% ] 000/012 VUs  0m19.9s/2m0s  5.00 iters/s
+page_load         [  17% ] 00/05 VUs    0m19.9s/2m0s  1.50 iters/s
+partner_pitlane   [  17% ] 000/016 VUs  0m19.9s/2m0s  7.00 iters/s
+partner_transit   [  17% ] 000/030 VUs  0m19.9s/2m0s  14.00 iters/s
+planner_session   [  17% ] 00/03 VUs    0m19.9s/2m0s  0.50 iters/s
+tiles             [  17% ] 000/022 VUs  0m19.9s/2m0s  10.00 iters/s
+
+running (0m21.0s), 0000/0109 VUs, 968 complete and 0 interrupted iterations
+address_search    [  17% ] 000/018 VUs  0m20.9s/2m0s  8.00 iters/s
+geojson_export    [  17% ] 0/3 VUs      0m20.9s/2m0s  0.03 iters/s
+map_click         [  17% ] 000/012 VUs  0m20.9s/2m0s  5.00 iters/s
+page_load         [  17% ] 00/05 VUs    0m20.9s/2m0s  1.50 iters/s
+partner_pitlane   [  17% ] 000/016 VUs  0m20.9s/2m0s  7.00 iters/s
+partner_transit   [  17% ] 000/030 VUs  0m20.9s/2m0s  14.00 iters/s
+planner_session   [  17% ] 00/03 VUs    0m20.9s/2m0s  0.50 iters/s
+tiles             [  17% ] 000/022 VUs  0m20.9s/2m0s  10.00 iters/s
+
+running (0m22.0s), 0000/0109 VUs, 1013 complete and 0 interrupted iterations
+address_search    [  18% ] 000/018 VUs  0m21.9s/2m0s  8.00 iters/s
+geojson_export    [  18% ] 0/3 VUs      0m21.9s/2m0s  0.03 iters/s
+map_click         [  18% ] 000/012 VUs  0m21.9s/2m0s  5.00 iters/s
+page_load         [  18% ] 00/05 VUs    0m21.9s/2m0s  1.50 iters/s
+partner_pitlane   [  18% ] 000/016 VUs  0m21.9s/2m0s  7.00 iters/s
+partner_transit   [  18% ] 000/030 VUs  0m21.9s/2m0s  14.00 iters/s
+planner_session   [  18% ] 00/03 VUs    0m21.9s/2m0s  0.50 iters/s
+tiles             [  18% ] 000/022 VUs  0m21.9s/2m0s  10.00 iters/s
+
+running (0m23.0s), 0001/0109 VUs, 1059 complete and 0 interrupted iterations
+address_search    [  19% ] 000/018 VUs  0m22.9s/2m0s  8.00 iters/s
+geojson_export    [  19% ] 0/3 VUs      0m22.9s/2m0s  0.03 iters/s
+map_click         [  19% ] 001/012 VUs  0m22.9s/2m0s  5.00 iters/s
+page_load         [  19% ] 00/05 VUs    0m22.9s/2m0s  1.50 iters/s
+partner_pitlane   [  19% ] 000/016 VUs  0m22.9s/2m0s  7.00 iters/s
+partner_transit   [  19% ] 000/030 VUs  0m22.9s/2m0s  14.00 iters/s
+planner_session   [  19% ] 00/03 VUs    0m22.9s/2m0s  0.50 iters/s
+tiles             [  19% ] 000/022 VUs  0m22.9s/2m0s  10.00 iters/s
+
+running (0m24.0s), 0001/0109 VUs, 1104 complete and 0 interrupted iterations
+address_search    [  20% ] 000/018 VUs  0m24.0s/2m0s  8.00 iters/s
+geojson_export    [  20% ] 0/3 VUs      0m23.9s/2m0s  0.03 iters/s
+map_click         [  20% ] 001/012 VUs  0m23.9s/2m0s  5.00 iters/s
+page_load         [  20% ] 00/05 VUs    0m24.0s/2m0s  1.50 iters/s
+partner_pitlane   [  20% ] 000/016 VUs  0m23.9s/2m0s  7.00 iters/s
+partner_transit   [  20% ] 000/030 VUs  0m23.9s/2m0s  14.00 iters/s
+planner_session   [  20% ] 00/03 VUs    0m23.9s/2m0s  0.50 iters/s
+tiles             [  20% ] 000/022 VUs  0m24.0s/2m0s  10.00 iters/s
+
+running (0m25.0s), 0000/0109 VUs, 1152 complete and 0 interrupted iterations
+address_search    [  21% ] 000/018 VUs  0m24.9s/2m0s  8.00 iters/s
+geojson_export    [  21% ] 0/3 VUs      0m24.9s/2m0s  0.03 iters/s
+map_click         [  21% ] 000/012 VUs  0m24.9s/2m0s  5.00 iters/s
+page_load         [  21% ] 00/05 VUs    0m24.9s/2m0s  1.50 iters/s
+partner_pitlane   [  21% ] 000/016 VUs  0m24.9s/2m0s  7.00 iters/s
+partner_transit   [  21% ] 000/030 VUs  0m24.9s/2m0s  14.00 iters/s
+planner_session   [  21% ] 00/03 VUs    0m24.9s/2m0s  0.50 iters/s
+tiles             [  21% ] 000/022 VUs  0m24.9s/2m0s  10.00 iters/s
+
+running (0m26.0s), 0000/0109 VUs, 1197 complete and 0 interrupted iterations
+address_search    [  22% ] 000/018 VUs  0m25.9s/2m0s  8.00 iters/s
+geojson_export    [  22% ] 0/3 VUs      0m25.9s/2m0s  0.03 iters/s
+map_click         [  22% ] 000/012 VUs  0m25.9s/2m0s  5.00 iters/s
+page_load         [  22% ] 00/05 VUs    0m25.9s/2m0s  1.50 iters/s
+partner_pitlane   [  22% ] 000/016 VUs  0m25.9s/2m0s  7.00 iters/s
+partner_transit   [  22% ] 000/030 VUs  0m25.9s/2m0s  14.00 iters/s
+planner_session   [  22% ] 00/03 VUs    0m25.9s/2m0s  0.50 iters/s
+tiles             [  22% ] 000/022 VUs  0m25.9s/2m0s  10.00 iters/s
+
+running (0m27.0s), 0000/0109 VUs, 1244 complete and 0 interrupted iterations
+address_search    [  22% ] 000/018 VUs  0m26.9s/2m0s  8.00 iters/s
+geojson_export    [  22% ] 0/3 VUs      0m26.9s/2m0s  0.03 iters/s
+map_click         [  22% ] 000/012 VUs  0m26.9s/2m0s  5.00 iters/s
+page_load         [  22% ] 00/05 VUs    0m26.9s/2m0s  1.50 iters/s
+partner_pitlane   [  22% ] 000/016 VUs  0m26.9s/2m0s  7.00 iters/s
+partner_transit   [  22% ] 000/030 VUs  0m26.9s/2m0s  14.00 iters/s
+planner_session   [  22% ] 00/03 VUs    0m26.9s/2m0s  0.50 iters/s
+tiles             [  22% ] 000/022 VUs  0m27.0s/2m0s  10.00 iters/s
+
+running (0m28.0s), 0000/0109 VUs, 1289 complete and 0 interrupted iterations
+address_search    [  23% ] 000/018 VUs  0m27.9s/2m0s  8.00 iters/s
+geojson_export    [  23% ] 0/3 VUs      0m27.9s/2m0s  0.03 iters/s
+map_click         [  23% ] 000/012 VUs  0m27.9s/2m0s  5.00 iters/s
+page_load         [  23% ] 00/05 VUs    0m27.9s/2m0s  1.50 iters/s
+partner_pitlane   [  23% ] 000/016 VUs  0m27.9s/2m0s  7.00 iters/s
+partner_transit   [  23% ] 000/030 VUs  0m27.9s/2m0s  14.00 iters/s
+planner_session   [  23% ] 00/03 VUs    0m27.9s/2m0s  0.50 iters/s
+tiles             [  23% ] 000/022 VUs  0m27.9s/2m0s  10.00 iters/s
+
+running (0m29.0s), 0000/0109 VUs, 1336 complete and 0 interrupted iterations
+address_search    [  24% ] 000/018 VUs  0m28.9s/2m0s  8.00 iters/s
+geojson_export    [  24% ] 0/3 VUs      0m28.9s/2m0s  0.03 iters/s
+map_click         [  24% ] 000/012 VUs  0m28.9s/2m0s  5.00 iters/s
+page_load         [  24% ] 00/05 VUs    0m28.9s/2m0s  1.50 iters/s
+partner_pitlane   [  24% ] 000/016 VUs  0m28.9s/2m0s  7.00 iters/s
+partner_transit   [  24% ] 000/030 VUs  0m28.9s/2m0s  14.00 iters/s
+planner_session   [  24% ] 00/03 VUs    0m28.9s/2m0s  0.50 iters/s
+tiles             [  24% ] 000/022 VUs  0m28.9s/2m0s  10.00 iters/s
+
+running (0m30.0s), 0000/0109 VUs, 1381 complete and 0 interrupted iterations
+address_search    [  25% ] 000/018 VUs  0m29.9s/2m0s  8.00 iters/s
+geojson_export    [  25% ] 0/3 VUs      0m29.9s/2m0s  0.03 iters/s
+map_click         [  25% ] 000/012 VUs  0m29.9s/2m0s  5.00 iters/s
+page_load         [  25% ] 00/05 VUs    0m29.9s/2m0s  1.50 iters/s
+partner_pitlane   [  25% ] 000/016 VUs  0m29.9s/2m0s  7.00 iters/s
+partner_transit   [  25% ] 000/030 VUs  0m29.9s/2m0s  14.00 iters/s
+planner_session   [  25% ] 00/03 VUs    0m29.9s/2m0s  0.50 iters/s
+tiles             [  25% ] 000/022 VUs  0m29.9s/2m0s  10.00 iters/s
+
+running (0m31.0s), 0000/0109 VUs, 1429 complete and 0 interrupted iterations
+address_search    [  26% ] 000/018 VUs  0m30.9s/2m0s  8.00 iters/s
+geojson_export    [  26% ] 0/3 VUs      0m30.9s/2m0s  0.03 iters/s
+map_click         [  26% ] 000/012 VUs  0m30.9s/2m0s  5.00 iters/s
+page_load         [  26% ] 00/05 VUs    0m30.9s/2m0s  1.50 iters/s
+partner_pitlane   [  26% ] 000/016 VUs  0m30.9s/2m0s  7.00 iters/s
+partner_transit   [  26% ] 000/030 VUs  0m30.9s/2m0s  14.00 iters/s
+planner_session   [  26% ] 00/03 VUs    0m30.9s/2m0s  0.50 iters/s
+tiles             [  26% ] 000/022 VUs  0m30.9s/2m0s  10.00 iters/s
+
+running (0m32.0s), 0000/0109 VUs, 1474 complete and 0 interrupted iterations
+address_search    [  27% ] 000/018 VUs  0m31.9s/2m0s  8.00 iters/s
+geojson_export    [  27% ] 0/3 VUs      0m31.9s/2m0s  0.03 iters/s
+map_click         [  27% ] 000/012 VUs  0m31.9s/2m0s  5.00 iters/s
+page_load         [  27% ] 00/05 VUs    0m31.9s/2m0s  1.50 iters/s
+partner_pitlane   [  27% ] 000/016 VUs  0m31.9s/2m0s  7.00 iters/s
+partner_transit   [  27% ] 000/030 VUs  0m31.9s/2m0s  14.00 iters/s
+planner_session   [  27% ] 00/03 VUs    0m31.9s/2m0s  0.50 iters/s
+tiles             [  27% ] 000/022 VUs  0m31.9s/2m0s  10.00 iters/s
+
+running (0m33.0s), 0000/0109 VUs, 1521 complete and 0 interrupted iterations
+address_search    [  27% ] 000/018 VUs  0m32.9s/2m0s  8.00 iters/s
+geojson_export    [  27% ] 0/3 VUs      0m32.9s/2m0s  0.03 iters/s
+map_click         [  27% ] 000/012 VUs  0m32.9s/2m0s  5.00 iters/s
+page_load         [  27% ] 00/05 VUs    0m32.9s/2m0s  1.50 iters/s
+partner_pitlane   [  27% ] 000/016 VUs  0m32.9s/2m0s  7.00 iters/s
+partner_transit   [  27% ] 000/030 VUs  0m32.9s/2m0s  14.00 iters/s
+planner_session   [  27% ] 00/03 VUs    0m32.9s/2m0s  0.50 iters/s
+tiles             [  27% ] 000/022 VUs  0m32.9s/2m0s  10.00 iters/s
+
+running (0m34.0s), 0000/0109 VUs, 1566 complete and 0 interrupted iterations
+address_search    [  28% ] 000/018 VUs  0m33.9s/2m0s  8.00 iters/s
+geojson_export    [  28% ] 0/3 VUs      0m33.9s/2m0s  0.03 iters/s
+map_click         [  28% ] 000/012 VUs  0m33.9s/2m0s  5.00 iters/s
+page_load         [  28% ] 00/05 VUs    0m33.9s/2m0s  1.50 iters/s
+partner_pitlane   [  28% ] 000/016 VUs  0m33.9s/2m0s  7.00 iters/s
+partner_transit   [  28% ] 000/030 VUs  0m33.9s/2m0s  14.00 iters/s
+planner_session   [  28% ] 00/03 VUs    0m33.9s/2m0s  0.50 iters/s
+tiles             [  28% ] 000/022 VUs  0m33.9s/2m0s  10.00 iters/s
+
+running (0m35.0s), 0000/0109 VUs, 1613 complete and 0 interrupted iterations
+address_search    [  29% ] 000/018 VUs  0m34.9s/2m0s  8.00 iters/s
+geojson_export    [  29% ] 0/3 VUs      0m34.9s/2m0s  0.03 iters/s
+map_click         [  29% ] 000/012 VUs  0m34.9s/2m0s  5.00 iters/s
+page_load         [  29% ] 00/05 VUs    0m35.0s/2m0s  1.50 iters/s
+partner_pitlane   [  29% ] 000/016 VUs  0m34.9s/2m0s  7.00 iters/s
+partner_transit   [  29% ] 000/030 VUs  0m34.9s/2m0s  14.00 iters/s
+planner_session   [  29% ] 00/03 VUs    0m34.9s/2m0s  0.50 iters/s
+tiles             [  29% ] 000/022 VUs  0m35.0s/2m0s  10.00 iters/s
+
+running (0m36.0s), 0000/0109 VUs, 1658 complete and 0 interrupted iterations
+address_search    [  30% ] 000/018 VUs  0m35.9s/2m0s  8.00 iters/s
+geojson_export    [  30% ] 0/3 VUs      0m35.9s/2m0s  0.03 iters/s
+map_click         [  30% ] 000/012 VUs  0m35.9s/2m0s  5.00 iters/s
+page_load         [  30% ] 00/05 VUs    0m35.9s/2m0s  1.50 iters/s
+partner_pitlane   [  30% ] 000/016 VUs  0m35.9s/2m0s  7.00 iters/s
+partner_transit   [  30% ] 000/030 VUs  0m35.9s/2m0s  14.00 iters/s
+planner_session   [  30% ] 00/03 VUs    0m35.9s/2m0s  0.50 iters/s
+tiles             [  30% ] 000/022 VUs  0m35.9s/2m0s  10.00 iters/s
+
+running (0m37.0s), 0000/0109 VUs, 1705 complete and 0 interrupted iterations
+address_search    [  31% ] 000/018 VUs  0m36.9s/2m0s  8.00 iters/s
+geojson_export    [  31% ] 0/3 VUs      0m36.9s/2m0s  0.03 iters/s
+map_click         [  31% ] 000/012 VUs  0m36.9s/2m0s  5.00 iters/s
+page_load         [  31% ] 00/05 VUs    0m36.9s/2m0s  1.50 iters/s
+partner_pitlane   [  31% ] 000/016 VUs  0m36.9s/2m0s  7.00 iters/s
+partner_transit   [  31% ] 000/030 VUs  0m36.9s/2m0s  14.00 iters/s
+planner_session   [  31% ] 00/03 VUs    0m36.9s/2m0s  0.50 iters/s
+tiles             [  31% ] 000/022 VUs  0m36.9s/2m0s  10.00 iters/s
+
+running (0m38.0s), 0000/0109 VUs, 1750 complete and 0 interrupted iterations
+address_search    [  32% ] 000/018 VUs  0m37.9s/2m0s  8.00 iters/s
+geojson_export    [  32% ] 0/3 VUs      0m37.9s/2m0s  0.03 iters/s
+map_click         [  32% ] 000/012 VUs  0m37.9s/2m0s  5.00 iters/s
+page_load         [  32% ] 00/05 VUs    0m37.9s/2m0s  1.50 iters/s
+partner_pitlane   [  32% ] 000/016 VUs  0m37.9s/2m0s  7.00 iters/s
+partner_transit   [  32% ] 000/030 VUs  0m37.9s/2m0s  14.00 iters/s
+planner_session   [  32% ] 00/03 VUs    0m37.9s/2m0s  0.50 iters/s
+tiles             [  32% ] 000/022 VUs  0m37.9s/2m0s  10.00 iters/s
+
+running (0m39.0s), 0000/0109 VUs, 1797 complete and 0 interrupted iterations
+address_search    [  32% ] 000/018 VUs  0m39.0s/2m0s  8.00 iters/s
+geojson_export    [  32% ] 0/3 VUs      0m38.9s/2m0s  0.03 iters/s
+map_click         [  32% ] 000/012 VUs  0m38.9s/2m0s  5.00 iters/s
+page_load         [  32% ] 00/05 VUs    0m39.0s/2m0s  1.50 iters/s
+partner_pitlane   [  32% ] 000/016 VUs  0m38.9s/2m0s  7.00 iters/s
+partner_transit   [  32% ] 000/030 VUs  0m38.9s/2m0s  14.00 iters/s
+planner_session   [  32% ] 00/03 VUs    0m38.9s/2m0s  0.50 iters/s
+tiles             [  32% ] 000/022 VUs  0m39.0s/2m0s  10.00 iters/s
+
+running (0m40.0s), 0000/0109 VUs, 1842 complete and 0 interrupted iterations
+address_search    [  33% ] 000/018 VUs  0m39.9s/2m0s  8.00 iters/s
+geojson_export    [  33% ] 0/3 VUs      0m39.9s/2m0s  0.03 iters/s
+map_click         [  33% ] 000/012 VUs  0m39.9s/2m0s  5.00 iters/s
+page_load         [  33% ] 00/05 VUs    0m39.9s/2m0s  1.50 iters/s
+partner_pitlane   [  33% ] 000/016 VUs  0m39.9s/2m0s  7.00 iters/s
+partner_transit   [  33% ] 000/030 VUs  0m39.9s/2m0s  14.00 iters/s
+planner_session   [  33% ] 00/03 VUs    0m39.9s/2m0s  0.50 iters/s
+tiles             [  33% ] 000/022 VUs  0m39.9s/2m0s  10.00 iters/s
+
+running (0m41.0s), 0000/0109 VUs, 1889 complete and 0 interrupted iterations
+address_search    [  34% ] 000/018 VUs  0m40.9s/2m0s  8.00 iters/s
+geojson_export    [  34% ] 0/3 VUs      0m40.9s/2m0s  0.03 iters/s
+map_click         [  34% ] 000/012 VUs  0m40.9s/2m0s  5.00 iters/s
+page_load         [  34% ] 00/05 VUs    0m40.9s/2m0s  1.50 iters/s
+partner_pitlane   [  34% ] 000/016 VUs  0m40.9s/2m0s  7.00 iters/s
+partner_transit   [  34% ] 000/030 VUs  0m40.9s/2m0s  14.00 iters/s
+planner_session   [  34% ] 00/03 VUs    0m40.9s/2m0s  0.50 iters/s
+tiles             [  34% ] 000/022 VUs  0m41.0s/2m0s  10.00 iters/s
+
+running (0m42.0s), 0000/0109 VUs, 1934 complete and 0 interrupted iterations
+address_search    [  35% ] 000/018 VUs  0m41.9s/2m0s  8.00 iters/s
+geojson_export    [  35% ] 0/3 VUs      0m41.9s/2m0s  0.03 iters/s
+map_click         [  35% ] 000/012 VUs  0m41.9s/2m0s  5.00 iters/s
+page_load         [  35% ] 00/05 VUs    0m41.9s/2m0s  1.50 iters/s
+partner_pitlane   [  35% ] 000/016 VUs  0m41.9s/2m0s  7.00 iters/s
+partner_transit   [  35% ] 000/030 VUs  0m41.9s/2m0s  14.00 iters/s
+planner_session   [  35% ] 00/03 VUs    0m41.9s/2m0s  0.50 iters/s
+tiles             [  35% ] 000/022 VUs  0m41.9s/2m0s  10.00 iters/s
+
+running (0m43.0s), 0000/0109 VUs, 1981 complete and 0 interrupted iterations
+address_search    [  36% ] 000/018 VUs  0m42.9s/2m0s  8.00 iters/s
+geojson_export    [  36% ] 0/3 VUs      0m42.9s/2m0s  0.03 iters/s
+map_click         [  36% ] 000/012 VUs  0m42.9s/2m0s  5.00 iters/s
+page_load         [  36% ] 00/05 VUs    0m42.9s/2m0s  1.50 iters/s
+partner_pitlane   [  36% ] 000/016 VUs  0m42.9s/2m0s  7.00 iters/s
+partner_transit   [  36% ] 000/030 VUs  0m42.9s/2m0s  14.00 iters/s
+planner_session   [  36% ] 00/03 VUs    0m42.9s/2m0s  0.50 iters/s
+tiles             [  36% ] 000/022 VUs  0m42.9s/2m0s  10.00 iters/s
+
+running (0m44.0s), 0000/0109 VUs, 2026 complete and 0 interrupted iterations
+address_search    [  37% ] 000/018 VUs  0m43.9s/2m0s  8.00 iters/s
+geojson_export    [  37% ] 0/3 VUs      0m43.9s/2m0s  0.03 iters/s
+map_click         [  37% ] 000/012 VUs  0m43.9s/2m0s  5.00 iters/s
+page_load         [  37% ] 00/05 VUs    0m43.9s/2m0s  1.50 iters/s
+partner_pitlane   [  37% ] 000/016 VUs  0m43.9s/2m0s  7.00 iters/s
+partner_transit   [  37% ] 000/030 VUs  0m43.9s/2m0s  14.00 iters/s
+planner_session   [  37% ] 00/03 VUs    0m43.9s/2m0s  0.50 iters/s
+tiles             [  37% ] 000/022 VUs  0m43.9s/2m0s  10.00 iters/s
+
+running (0m45.0s), 0000/0109 VUs, 2073 complete and 0 interrupted iterations
+address_search    [  37% ] 000/018 VUs  0m44.9s/2m0s  8.00 iters/s
+geojson_export    [  37% ] 0/3 VUs      0m44.9s/2m0s  0.03 iters/s
+map_click         [  37% ] 000/012 VUs  0m44.9s/2m0s  5.00 iters/s
+page_load         [  37% ] 00/05 VUs    0m44.9s/2m0s  1.50 iters/s
+partner_pitlane   [  37% ] 000/016 VUs  0m44.9s/2m0s  7.00 iters/s
+partner_transit   [  37% ] 000/030 VUs  0m44.9s/2m0s  14.00 iters/s
+planner_session   [  37% ] 00/03 VUs    0m44.9s/2m0s  0.50 iters/s
+tiles             [  37% ] 000/022 VUs  0m44.9s/2m0s  10.00 iters/s
+
+running (0m46.0s), 0000/0109 VUs, 2118 complete and 0 interrupted iterations
+address_search    [  38% ] 000/018 VUs  0m45.9s/2m0s  8.00 iters/s
+geojson_export    [  38% ] 0/3 VUs      0m45.9s/2m0s  0.03 iters/s
+map_click         [  38% ] 000/012 VUs  0m45.9s/2m0s  5.00 iters/s
+page_load         [  38% ] 00/05 VUs    0m45.9s/2m0s  1.50 iters/s
+partner_pitlane   [  38% ] 000/016 VUs  0m45.9s/2m0s  7.00 iters/s
+partner_transit   [  38% ] 000/030 VUs  0m45.9s/2m0s  14.00 iters/s
+planner_session   [  38% ] 00/03 VUs    0m45.9s/2m0s  0.50 iters/s
+tiles             [  38% ] 000/022 VUs  0m45.9s/2m0s  10.00 iters/s
+
+running (0m47.0s), 0000/0109 VUs, 2165 complete and 0 interrupted iterations
+address_search    [  39% ] 000/018 VUs  0m46.9s/2m0s  8.00 iters/s
+geojson_export    [  39% ] 0/3 VUs      0m46.9s/2m0s  0.03 iters/s
+map_click         [  39% ] 000/012 VUs  0m46.9s/2m0s  5.00 iters/s
+page_load         [  39% ] 00/05 VUs    0m46.9s/2m0s  1.50 iters/s
+partner_pitlane   [  39% ] 000/016 VUs  0m46.9s/2m0s  7.00 iters/s
+partner_transit   [  39% ] 000/030 VUs  0m46.9s/2m0s  14.00 iters/s
+planner_session   [  39% ] 00/03 VUs    0m46.9s/2m0s  0.50 iters/s
+tiles             [  39% ] 000/022 VUs  0m46.9s/2m0s  10.00 iters/s
+
+running (0m48.0s), 0000/0109 VUs, 2210 complete and 0 interrupted iterations
+address_search    [  40% ] 000/018 VUs  0m47.9s/2m0s  8.00 iters/s
+geojson_export    [  40% ] 0/3 VUs      0m47.9s/2m0s  0.03 iters/s
+map_click         [  40% ] 000/012 VUs  0m47.9s/2m0s  5.00 iters/s
+page_load         [  40% ] 00/05 VUs    0m47.9s/2m0s  1.50 iters/s
+partner_pitlane   [  40% ] 000/016 VUs  0m47.9s/2m0s  7.00 iters/s
+partner_transit   [  40% ] 000/030 VUs  0m47.9s/2m0s  14.00 iters/s
+planner_session   [  40% ] 00/03 VUs    0m47.9s/2m0s  0.50 iters/s
+tiles             [  40% ] 000/022 VUs  0m47.9s/2m0s  10.00 iters/s
+
+running (0m49.0s), 0000/0109 VUs, 2257 complete and 0 interrupted iterations
+address_search    [  41% ] 000/018 VUs  0m48.9s/2m0s  8.00 iters/s
+geojson_export    [  41% ] 0/3 VUs      0m48.9s/2m0s  0.03 iters/s
+map_click         [  41% ] 000/012 VUs  0m48.9s/2m0s  5.00 iters/s
+page_load         [  41% ] 00/05 VUs    0m48.9s/2m0s  1.50 iters/s
+partner_pitlane   [  41% ] 000/016 VUs  0m48.9s/2m0s  7.00 iters/s
+partner_transit   [  41% ] 000/030 VUs  0m48.9s/2m0s  14.00 iters/s
+planner_session   [  41% ] 00/03 VUs    0m48.9s/2m0s  0.50 iters/s
+tiles             [  41% ] 000/022 VUs  0m48.9s/2m0s  10.00 iters/s
+
+running (0m50.0s), 0000/0109 VUs, 2302 complete and 0 interrupted iterations
+address_search    [  42% ] 000/018 VUs  0m49.9s/2m0s  8.00 iters/s
+geojson_export    [  42% ] 0/3 VUs      0m49.9s/2m0s  0.03 iters/s
+map_click         [  42% ] 000/012 VUs  0m49.9s/2m0s  5.00 iters/s
+page_load         [  42% ] 00/05 VUs    0m49.9s/2m0s  1.50 iters/s
+partner_pitlane   [  42% ] 000/016 VUs  0m49.9s/2m0s  7.00 iters/s
+partner_transit   [  42% ] 000/030 VUs  0m49.9s/2m0s  14.00 iters/s
+planner_session   [  42% ] 00/03 VUs    0m49.9s/2m0s  0.50 iters/s
+tiles             [  42% ] 000/022 VUs  0m49.9s/2m0s  10.00 iters/s
+
+running (0m51.0s), 0000/0109 VUs, 2349 complete and 0 interrupted iterations
+address_search    [  42% ] 000/018 VUs  0m50.9s/2m0s  8.00 iters/s
+geojson_export    [  42% ] 0/3 VUs      0m50.9s/2m0s  0.03 iters/s
+map_click         [  42% ] 000/012 VUs  0m50.9s/2m0s  5.00 iters/s
+page_load         [  42% ] 00/05 VUs    0m50.9s/2m0s  1.50 iters/s
+partner_pitlane   [  42% ] 000/016 VUs  0m50.9s/2m0s  7.00 iters/s
+partner_transit   [  42% ] 000/030 VUs  0m50.9s/2m0s  14.00 iters/s
+planner_session   [  42% ] 00/03 VUs    0m50.9s/2m0s  0.50 iters/s
+tiles             [  42% ] 000/022 VUs  0m50.9s/2m0s  10.00 iters/s
+
+running (0m52.0s), 0000/0109 VUs, 2394 complete and 0 interrupted iterations
+address_search    [  43% ] 000/018 VUs  0m51.9s/2m0s  8.00 iters/s
+geojson_export    [  43% ] 0/3 VUs      0m51.9s/2m0s  0.03 iters/s
+map_click         [  43% ] 000/012 VUs  0m51.9s/2m0s  5.00 iters/s
+page_load         [  43% ] 00/05 VUs    0m51.9s/2m0s  1.50 iters/s
+partner_pitlane   [  43% ] 000/016 VUs  0m51.9s/2m0s  7.00 iters/s
+partner_transit   [  43% ] 000/030 VUs  0m51.9s/2m0s  14.00 iters/s
+planner_session   [  43% ] 00/03 VUs    0m51.9s/2m0s  0.50 iters/s
+tiles             [  43% ] 000/022 VUs  0m51.9s/2m0s  10.00 iters/s
+
+running (0m53.0s), 0000/0109 VUs, 2441 complete and 0 interrupted iterations
+address_search    [  44% ] 000/018 VUs  0m53.0s/2m0s  8.00 iters/s
+geojson_export    [  44% ] 0/3 VUs      0m52.9s/2m0s  0.03 iters/s
+map_click         [  44% ] 000/012 VUs  0m52.9s/2m0s  5.00 iters/s
+page_load         [  44% ] 00/05 VUs    0m53.0s/2m0s  1.50 iters/s
+partner_pitlane   [  44% ] 000/016 VUs  0m52.9s/2m0s  7.00 iters/s
+partner_transit   [  44% ] 000/030 VUs  0m52.9s/2m0s  14.00 iters/s
+planner_session   [  44% ] 00/03 VUs    0m52.9s/2m0s  0.50 iters/s
+tiles             [  44% ] 000/022 VUs  0m53.0s/2m0s  10.00 iters/s
+
+running (0m54.0s), 0000/0109 VUs, 2486 complete and 0 interrupted iterations
+address_search    [  45% ] 000/018 VUs  0m53.9s/2m0s  8.00 iters/s
+geojson_export    [  45% ] 0/3 VUs      0m53.9s/2m0s  0.03 iters/s
+map_click         [  45% ] 000/012 VUs  0m53.9s/2m0s  5.00 iters/s
+page_load         [  45% ] 00/05 VUs    0m53.9s/2m0s  1.50 iters/s
+partner_pitlane   [  45% ] 000/016 VUs  0m53.9s/2m0s  7.00 iters/s
+partner_transit   [  45% ] 000/030 VUs  0m53.9s/2m0s  14.00 iters/s
+planner_session   [  45% ] 00/03 VUs    0m53.9s/2m0s  0.50 iters/s
+tiles             [  45% ] 000/022 VUs  0m54.0s/2m0s  10.00 iters/s
+
+running (0m55.0s), 0000/0109 VUs, 2533 complete and 0 interrupted iterations
+address_search    [  46% ] 000/018 VUs  0m54.9s/2m0s  8.00 iters/s
+geojson_export    [  46% ] 0/3 VUs      0m54.9s/2m0s  0.03 iters/s
+map_click         [  46% ] 000/012 VUs  0m54.9s/2m0s  5.00 iters/s
+page_load         [  46% ] 00/05 VUs    0m54.9s/2m0s  1.50 iters/s
+partner_pitlane   [  46% ] 000/016 VUs  0m54.9s/2m0s  7.00 iters/s
+partner_transit   [  46% ] 000/030 VUs  0m54.9s/2m0s  14.00 iters/s
+planner_session   [  46% ] 00/03 VUs    0m54.9s/2m0s  0.50 iters/s
+tiles             [  46% ] 000/022 VUs  0m54.9s/2m0s  10.00 iters/s
+
+running (0m56.0s), 0000/0109 VUs, 2578 complete and 0 interrupted iterations
+address_search    [  47% ] 000/018 VUs  0m55.9s/2m0s  8.00 iters/s
+geojson_export    [  47% ] 0/3 VUs      0m55.9s/2m0s  0.03 iters/s
+map_click         [  47% ] 000/012 VUs  0m55.9s/2m0s  5.00 iters/s
+page_load         [  47% ] 00/05 VUs    0m55.9s/2m0s  1.50 iters/s
+partner_pitlane   [  47% ] 000/016 VUs  0m55.9s/2m0s  7.00 iters/s
+partner_transit   [  47% ] 000/030 VUs  0m55.9s/2m0s  14.00 iters/s
+planner_session   [  47% ] 00/03 VUs    0m55.9s/2m0s  0.50 iters/s
+tiles             [  47% ] 000/022 VUs  0m55.9s/2m0s  10.00 iters/s
+
+running (0m57.0s), 0000/0109 VUs, 2625 complete and 0 interrupted iterations
+address_search    [  47% ] 000/018 VUs  0m56.9s/2m0s  8.00 iters/s
+geojson_export    [  47% ] 0/3 VUs      0m56.9s/2m0s  0.03 iters/s
+map_click         [  47% ] 000/012 VUs  0m56.9s/2m0s  5.00 iters/s
+page_load         [  47% ] 00/05 VUs    0m56.9s/2m0s  1.50 iters/s
+partner_pitlane   [  47% ] 000/016 VUs  0m56.9s/2m0s  7.00 iters/s
+partner_transit   [  47% ] 000/030 VUs  0m56.9s/2m0s  14.00 iters/s
+planner_session   [  47% ] 00/03 VUs    0m56.9s/2m0s  0.50 iters/s
+tiles             [  47% ] 000/022 VUs  0m56.9s/2m0s  10.00 iters/s
+
+running (0m58.0s), 0000/0109 VUs, 2670 complete and 0 interrupted iterations
+address_search    [  48% ] 000/018 VUs  0m57.9s/2m0s  8.00 iters/s
+geojson_export    [  48% ] 0/3 VUs      0m57.9s/2m0s  0.03 iters/s
+map_click         [  48% ] 000/012 VUs  0m57.9s/2m0s  5.00 iters/s
+page_load         [  48% ] 00/05 VUs    0m57.9s/2m0s  1.50 iters/s
+partner_pitlane   [  48% ] 000/016 VUs  0m57.9s/2m0s  7.00 iters/s
+partner_transit   [  48% ] 000/030 VUs  0m57.9s/2m0s  14.00 iters/s
+planner_session   [  48% ] 00/03 VUs    0m57.9s/2m0s  0.50 iters/s
+tiles             [  48% ] 000/022 VUs  0m58.0s/2m0s  10.00 iters/s
+
+running (0m59.0s), 0000/0109 VUs, 2717 complete and 0 interrupted iterations
+address_search    [  49% ] 000/018 VUs  0m58.9s/2m0s  8.00 iters/s
+geojson_export    [  49% ] 0/3 VUs      0m58.9s/2m0s  0.03 iters/s
+map_click         [  49% ] 000/012 VUs  0m58.9s/2m0s  5.00 iters/s
+page_load         [  49% ] 00/05 VUs    0m58.9s/2m0s  1.50 iters/s
+partner_pitlane   [  49% ] 000/016 VUs  0m58.9s/2m0s  7.00 iters/s
+partner_transit   [  49% ] 000/030 VUs  0m58.9s/2m0s  14.00 iters/s
+planner_session   [  49% ] 00/03 VUs    0m58.9s/2m0s  0.50 iters/s
+tiles             [  49% ] 000/022 VUs  0m58.9s/2m0s  10.00 iters/s
+
+running (1m00.0s), 0000/0109 VUs, 2762 complete and 0 interrupted iterations
+address_search    [  50% ] 000/018 VUs  0m59.9s/2m0s  8.00 iters/s
+geojson_export    [  50% ] 0/3 VUs      0m59.9s/2m0s  0.03 iters/s
+map_click         [  50% ] 000/012 VUs  0m59.9s/2m0s  5.00 iters/s
+page_load         [  50% ] 00/05 VUs    0m59.9s/2m0s  1.50 iters/s
+partner_pitlane   [  50% ] 000/016 VUs  0m59.9s/2m0s  7.00 iters/s
+partner_transit   [  50% ] 000/030 VUs  0m59.9s/2m0s  14.00 iters/s
+planner_session   [  50% ] 00/03 VUs    0m59.9s/2m0s  0.50 iters/s
+tiles             [  50% ] 000/022 VUs  0m59.9s/2m0s  10.00 iters/s
+
+running (1m01.0s), 0000/0109 VUs, 2810 complete and 0 interrupted iterations
+address_search    [  51% ] 000/018 VUs  1m00.9s/2m0s  8.00 iters/s
+geojson_export    [  51% ] 0/3 VUs      1m00.9s/2m0s  0.03 iters/s
+map_click         [  51% ] 000/012 VUs  1m00.9s/2m0s  5.00 iters/s
+page_load         [  51% ] 00/05 VUs    1m00.9s/2m0s  1.50 iters/s
+partner_pitlane   [  51% ] 000/016 VUs  1m00.9s/2m0s  7.00 iters/s
+partner_transit   [  51% ] 000/030 VUs  1m00.9s/2m0s  14.00 iters/s
+planner_session   [  51% ] 00/03 VUs    1m00.9s/2m0s  0.50 iters/s
+tiles             [  51% ] 000/022 VUs  1m00.9s/2m0s  10.00 iters/s
+
+running (1m02.0s), 0000/0109 VUs, 2855 complete and 0 interrupted iterations
+address_search    [  52% ] 000/018 VUs  1m01.9s/2m0s  8.00 iters/s
+geojson_export    [  52% ] 0/3 VUs      1m01.9s/2m0s  0.03 iters/s
+map_click         [  52% ] 000/012 VUs  1m01.9s/2m0s  5.00 iters/s
+page_load         [  52% ] 00/05 VUs    1m01.9s/2m0s  1.50 iters/s
+partner_pitlane   [  52% ] 000/016 VUs  1m01.9s/2m0s  7.00 iters/s
+partner_transit   [  52% ] 000/030 VUs  1m01.9s/2m0s  14.00 iters/s
+planner_session   [  52% ] 00/03 VUs    1m01.9s/2m0s  0.50 iters/s
+tiles             [  52% ] 000/022 VUs  1m01.9s/2m0s  10.00 iters/s
+
+running (1m03.0s), 0000/0109 VUs, 2902 complete and 0 interrupted iterations
+address_search    [  52% ] 000/018 VUs  1m02.9s/2m0s  8.00 iters/s
+geojson_export    [  52% ] 0/3 VUs      1m02.9s/2m0s  0.03 iters/s
+map_click         [  52% ] 000/012 VUs  1m02.9s/2m0s  5.00 iters/s
+page_load         [  52% ] 00/05 VUs    1m02.9s/2m0s  1.50 iters/s
+partner_pitlane   [  52% ] 000/016 VUs  1m02.9s/2m0s  7.00 iters/s
+partner_transit   [  52% ] 000/030 VUs  1m02.9s/2m0s  14.00 iters/s
+planner_session   [  52% ] 00/03 VUs    1m02.9s/2m0s  0.50 iters/s
+tiles             [  52% ] 000/022 VUs  1m02.9s/2m0s  10.00 iters/s
+
+running (1m04.0s), 0000/0109 VUs, 2947 complete and 0 interrupted iterations
+address_search    [  53% ] 000/018 VUs  1m03.9s/2m0s  8.00 iters/s
+geojson_export    [  53% ] 0/3 VUs      1m03.9s/2m0s  0.03 iters/s
+map_click         [  53% ] 000/012 VUs  1m03.9s/2m0s  5.00 iters/s
+page_load         [  53% ] 00/05 VUs    1m03.9s/2m0s  1.50 iters/s
+partner_pitlane   [  53% ] 000/016 VUs  1m03.9s/2m0s  7.00 iters/s
+partner_transit   [  53% ] 000/030 VUs  1m03.9s/2m0s  14.00 iters/s
+planner_session   [  53% ] 00/03 VUs    1m03.9s/2m0s  0.50 iters/s
+tiles             [  53% ] 000/022 VUs  1m03.9s/2m0s  10.00 iters/s
+
+running (1m05.0s), 0000/0109 VUs, 2994 complete and 0 interrupted iterations
+address_search    [  54% ] 000/018 VUs  1m04.9s/2m0s  8.00 iters/s
+geojson_export    [  54% ] 0/3 VUs      1m04.9s/2m0s  0.03 iters/s
+map_click         [  54% ] 000/012 VUs  1m04.9s/2m0s  5.00 iters/s
+page_load         [  54% ] 00/05 VUs    1m04.9s/2m0s  1.50 iters/s
+partner_pitlane   [  54% ] 000/016 VUs  1m04.9s/2m0s  7.00 iters/s
+partner_transit   [  54% ] 000/030 VUs  1m04.9s/2m0s  14.00 iters/s
+planner_session   [  54% ] 00/03 VUs    1m04.9s/2m0s  0.50 iters/s
+tiles             [  54% ] 000/022 VUs  1m04.9s/2m0s  10.00 iters/s
+
+running (1m06.0s), 0000/0109 VUs, 3039 complete and 0 interrupted iterations
+address_search    [  55% ] 000/018 VUs  1m05.9s/2m0s  8.00 iters/s
+geojson_export    [  55% ] 0/3 VUs      1m05.9s/2m0s  0.03 iters/s
+map_click         [  55% ] 000/012 VUs  1m05.9s/2m0s  5.00 iters/s
+page_load         [  55% ] 00/05 VUs    1m05.9s/2m0s  1.50 iters/s
+partner_pitlane   [  55% ] 000/016 VUs  1m05.9s/2m0s  7.00 iters/s
+partner_transit   [  55% ] 000/030 VUs  1m05.9s/2m0s  14.00 iters/s
+planner_session   [  55% ] 00/03 VUs    1m05.9s/2m0s  0.50 iters/s
+tiles             [  55% ] 000/022 VUs  1m05.9s/2m0s  10.00 iters/s
+
+running (1m07.0s), 0000/0109 VUs, 3086 complete and 0 interrupted iterations
+address_search    [  56% ] 000/018 VUs  1m06.9s/2m0s  8.00 iters/s
+geojson_export    [  56% ] 0/3 VUs      1m06.9s/2m0s  0.03 iters/s
+map_click         [  56% ] 000/012 VUs  1m06.9s/2m0s  5.00 iters/s
+page_load         [  56% ] 00/05 VUs    1m06.9s/2m0s  1.50 iters/s
+partner_pitlane   [  56% ] 000/016 VUs  1m06.9s/2m0s  7.00 iters/s
+partner_transit   [  56% ] 000/030 VUs  1m06.9s/2m0s  14.00 iters/s
+planner_session   [  56% ] 00/03 VUs    1m06.9s/2m0s  0.50 iters/s
+tiles             [  56% ] 000/022 VUs  1m06.9s/2m0s  10.00 iters/s
+
+running (1m08.0s), 0000/0109 VUs, 3131 complete and 0 interrupted iterations
+address_search    [  57% ] 000/018 VUs  1m07.9s/2m0s  8.00 iters/s
+geojson_export    [  57% ] 0/3 VUs      1m07.9s/2m0s  0.03 iters/s
+map_click         [  57% ] 000/012 VUs  1m07.9s/2m0s  5.00 iters/s
+page_load         [  57% ] 00/05 VUs    1m07.9s/2m0s  1.50 iters/s
+partner_pitlane   [  57% ] 000/016 VUs  1m07.9s/2m0s  7.00 iters/s
+partner_transit   [  57% ] 000/030 VUs  1m07.9s/2m0s  14.00 iters/s
+planner_session   [  57% ] 00/03 VUs    1m07.9s/2m0s  0.50 iters/s
+tiles             [  57% ] 000/022 VUs  1m07.9s/2m0s  10.00 iters/s
+
+running (1m09.0s), 0000/0109 VUs, 3178 complete and 0 interrupted iterations
+address_search    [  57% ] 000/018 VUs  1m08.9s/2m0s  8.00 iters/s
+geojson_export    [  57% ] 0/3 VUs      1m08.9s/2m0s  0.03 iters/s
+map_click         [  57% ] 000/012 VUs  1m08.9s/2m0s  5.00 iters/s
+page_load         [  57% ] 00/05 VUs    1m08.9s/2m0s  1.50 iters/s
+partner_pitlane   [  57% ] 000/016 VUs  1m08.9s/2m0s  7.00 iters/s
+partner_transit   [  57% ] 000/030 VUs  1m08.9s/2m0s  14.00 iters/s
+planner_session   [  57% ] 00/03 VUs    1m08.9s/2m0s  0.50 iters/s
+tiles             [  57% ] 000/022 VUs  1m08.9s/2m0s  10.00 iters/s
+
+running (1m10.0s), 0000/0109 VUs, 3223 complete and 0 interrupted iterations
+address_search    [  58% ] 000/018 VUs  1m09.9s/2m0s  8.00 iters/s
+geojson_export    [  58% ] 0/3 VUs      1m09.9s/2m0s  0.03 iters/s
+map_click         [  58% ] 000/012 VUs  1m09.9s/2m0s  5.00 iters/s
+page_load         [  58% ] 00/05 VUs    1m09.9s/2m0s  1.50 iters/s
+partner_pitlane   [  58% ] 000/016 VUs  1m09.9s/2m0s  7.00 iters/s
+partner_transit   [  58% ] 000/030 VUs  1m09.9s/2m0s  14.00 iters/s
+planner_session   [  58% ] 00/03 VUs    1m09.9s/2m0s  0.50 iters/s
+tiles             [  58% ] 000/022 VUs  1m09.9s/2m0s  10.00 iters/s
+
+running (1m11.0s), 0000/0109 VUs, 3270 complete and 0 interrupted iterations
+address_search    [  59% ] 000/018 VUs  1m10.9s/2m0s  8.00 iters/s
+geojson_export    [  59% ] 0/3 VUs      1m10.9s/2m0s  0.03 iters/s
+map_click         [  59% ] 000/012 VUs  1m10.9s/2m0s  5.00 iters/s
+page_load         [  59% ] 00/05 VUs    1m10.9s/2m0s  1.50 iters/s
+partner_pitlane   [  59% ] 000/016 VUs  1m10.9s/2m0s  7.00 iters/s
+partner_transit   [  59% ] 000/030 VUs  1m10.9s/2m0s  14.00 iters/s
+planner_session   [  59% ] 00/03 VUs    1m10.9s/2m0s  0.50 iters/s
+tiles             [  59% ] 000/022 VUs  1m10.9s/2m0s  10.00 iters/s
+
+running (1m12.0s), 0000/0109 VUs, 3315 complete and 0 interrupted iterations
+address_search    [  60% ] 000/018 VUs  1m11.9s/2m0s  8.00 iters/s
+geojson_export    [  60% ] 0/3 VUs      1m11.9s/2m0s  0.03 iters/s
+map_click         [  60% ] 000/012 VUs  1m11.9s/2m0s  5.00 iters/s
+page_load         [  60% ] 00/05 VUs    1m11.9s/2m0s  1.50 iters/s
+partner_pitlane   [  60% ] 000/016 VUs  1m11.9s/2m0s  7.00 iters/s
+partner_transit   [  60% ] 000/030 VUs  1m11.9s/2m0s  14.00 iters/s
+planner_session   [  60% ] 00/03 VUs    1m11.9s/2m0s  0.50 iters/s
+tiles             [  60% ] 000/022 VUs  1m11.9s/2m0s  10.00 iters/s
+
+running (1m13.0s), 0000/0109 VUs, 3362 complete and 0 interrupted iterations
+address_search    [  61% ] 000/018 VUs  1m12.9s/2m0s  8.00 iters/s
+geojson_export    [  61% ] 0/3 VUs      1m12.9s/2m0s  0.03 iters/s
+map_click         [  61% ] 000/012 VUs  1m12.9s/2m0s  5.00 iters/s
+page_load         [  61% ] 00/05 VUs    1m12.9s/2m0s  1.50 iters/s
+partner_pitlane   [  61% ] 000/016 VUs  1m12.9s/2m0s  7.00 iters/s
+partner_transit   [  61% ] 000/030 VUs  1m12.9s/2m0s  14.00 iters/s
+planner_session   [  61% ] 00/03 VUs    1m12.9s/2m0s  0.50 iters/s
+tiles             [  61% ] 000/022 VUs  1m12.9s/2m0s  10.00 iters/s
+
+running (1m14.0s), 0000/0109 VUs, 3407 complete and 0 interrupted iterations
+address_search    [  62% ] 000/018 VUs  1m13.9s/2m0s  8.00 iters/s
+geojson_export    [  62% ] 0/3 VUs      1m13.9s/2m0s  0.03 iters/s
+map_click         [  62% ] 000/012 VUs  1m13.9s/2m0s  5.00 iters/s
+page_load         [  62% ] 00/05 VUs    1m13.9s/2m0s  1.50 iters/s
+partner_pitlane   [  62% ] 000/016 VUs  1m13.9s/2m0s  7.00 iters/s
+partner_transit   [  62% ] 000/030 VUs  1m13.9s/2m0s  14.00 iters/s
+planner_session   [  62% ] 00/03 VUs    1m13.9s/2m0s  0.50 iters/s
+tiles             [  62% ] 000/022 VUs  1m13.9s/2m0s  10.00 iters/s
+
+running (1m15.0s), 0000/0109 VUs, 3454 complete and 0 interrupted iterations
+address_search    [  62% ] 000/018 VUs  1m14.9s/2m0s  8.00 iters/s
+geojson_export    [  62% ] 0/3 VUs      1m14.9s/2m0s  0.03 iters/s
+map_click         [  62% ] 000/012 VUs  1m14.9s/2m0s  5.00 iters/s
+page_load         [  62% ] 00/05 VUs    1m14.9s/2m0s  1.50 iters/s
+partner_pitlane   [  62% ] 000/016 VUs  1m14.9s/2m0s  7.00 iters/s
+partner_transit   [  62% ] 000/030 VUs  1m14.9s/2m0s  14.00 iters/s
+planner_session   [  62% ] 00/03 VUs    1m14.9s/2m0s  0.50 iters/s
+tiles             [  62% ] 000/022 VUs  1m14.9s/2m0s  10.00 iters/s
+
+running (1m16.0s), 0000/0109 VUs, 3499 complete and 0 interrupted iterations
+address_search    [  63% ] 000/018 VUs  1m15.9s/2m0s  8.00 iters/s
+geojson_export    [  63% ] 0/3 VUs      1m15.9s/2m0s  0.03 iters/s
+map_click         [  63% ] 000/012 VUs  1m15.9s/2m0s  5.00 iters/s
+page_load         [  63% ] 00/05 VUs    1m15.9s/2m0s  1.50 iters/s
+partner_pitlane   [  63% ] 000/016 VUs  1m15.9s/2m0s  7.00 iters/s
+partner_transit   [  63% ] 000/030 VUs  1m15.9s/2m0s  14.00 iters/s
+planner_session   [  63% ] 00/03 VUs    1m15.9s/2m0s  0.50 iters/s
+tiles             [  63% ] 000/022 VUs  1m15.9s/2m0s  10.00 iters/s
+
+running (1m17.0s), 0000/0109 VUs, 3546 complete and 0 interrupted iterations
+address_search    [  64% ] 000/018 VUs  1m16.9s/2m0s  8.00 iters/s
+geojson_export    [  64% ] 0/3 VUs      1m16.9s/2m0s  0.03 iters/s
+map_click         [  64% ] 000/012 VUs  1m16.9s/2m0s  5.00 iters/s
+page_load         [  64% ] 00/05 VUs    1m16.9s/2m0s  1.50 iters/s
+partner_pitlane   [  64% ] 000/016 VUs  1m16.9s/2m0s  7.00 iters/s
+partner_transit   [  64% ] 000/030 VUs  1m16.9s/2m0s  14.00 iters/s
+planner_session   [  64% ] 00/03 VUs    1m16.9s/2m0s  0.50 iters/s
+tiles             [  64% ] 000/022 VUs  1m16.9s/2m0s  10.00 iters/s
+
+running (1m18.0s), 0000/0109 VUs, 3591 complete and 0 interrupted iterations
+address_search    [  65% ] 000/018 VUs  1m17.9s/2m0s  8.00 iters/s
+geojson_export    [  65% ] 0/3 VUs      1m17.9s/2m0s  0.03 iters/s
+map_click         [  65% ] 000/012 VUs  1m17.9s/2m0s  5.00 iters/s
+page_load         [  65% ] 00/05 VUs    1m17.9s/2m0s  1.50 iters/s
+partner_pitlane   [  65% ] 000/016 VUs  1m17.9s/2m0s  7.00 iters/s
+partner_transit   [  65% ] 000/030 VUs  1m17.9s/2m0s  14.00 iters/s
+planner_session   [  65% ] 00/03 VUs    1m17.9s/2m0s  0.50 iters/s
+tiles             [  65% ] 000/022 VUs  1m17.9s/2m0s  10.00 iters/s
+
+running (1m19.0s), 0000/0109 VUs, 3638 complete and 0 interrupted iterations
+address_search    [  66% ] 000/018 VUs  1m18.9s/2m0s  8.00 iters/s
+geojson_export    [  66% ] 0/3 VUs      1m18.9s/2m0s  0.03 iters/s
+map_click         [  66% ] 000/012 VUs  1m18.9s/2m0s  5.00 iters/s
+page_load         [  66% ] 00/05 VUs    1m18.9s/2m0s  1.50 iters/s
+partner_pitlane   [  66% ] 000/016 VUs  1m18.9s/2m0s  7.00 iters/s
+partner_transit   [  66% ] 000/030 VUs  1m18.9s/2m0s  14.00 iters/s
+planner_session   [  66% ] 00/03 VUs    1m18.9s/2m0s  0.50 iters/s
+tiles             [  66% ] 000/022 VUs  1m18.9s/2m0s  10.00 iters/s
+
+running (1m20.0s), 0000/0109 VUs, 3683 complete and 0 interrupted iterations
+address_search    [  67% ] 000/018 VUs  1m19.9s/2m0s  8.00 iters/s
+geojson_export    [  67% ] 0/3 VUs      1m19.9s/2m0s  0.03 iters/s
+map_click         [  67% ] 000/012 VUs  1m19.9s/2m0s  5.00 iters/s
+page_load         [  67% ] 00/05 VUs    1m19.9s/2m0s  1.50 iters/s
+partner_pitlane   [  67% ] 000/016 VUs  1m19.9s/2m0s  7.00 iters/s
+partner_transit   [  67% ] 000/030 VUs  1m19.9s/2m0s  14.00 iters/s
+planner_session   [  67% ] 00/03 VUs    1m19.9s/2m0s  0.50 iters/s
+tiles             [  67% ] 000/022 VUs  1m19.9s/2m0s  10.00 iters/s
+
+running (1m21.0s), 0000/0109 VUs, 3730 complete and 0 interrupted iterations
+address_search    [  67% ] 000/018 VUs  1m20.9s/2m0s  8.00 iters/s
+geojson_export    [  67% ] 0/3 VUs      1m20.9s/2m0s  0.03 iters/s
+map_click         [  67% ] 000/012 VUs  1m20.9s/2m0s  5.00 iters/s
+page_load         [  67% ] 00/05 VUs    1m20.9s/2m0s  1.50 iters/s
+partner_pitlane   [  67% ] 000/016 VUs  1m20.9s/2m0s  7.00 iters/s
+partner_transit   [  67% ] 000/030 VUs  1m20.9s/2m0s  14.00 iters/s
+planner_session   [  67% ] 00/03 VUs    1m20.9s/2m0s  0.50 iters/s
+tiles             [  67% ] 000/022 VUs  1m20.9s/2m0s  10.00 iters/s
+
+running (1m22.0s), 0000/0109 VUs, 3775 complete and 0 interrupted iterations
+address_search    [  68% ] 000/018 VUs  1m21.9s/2m0s  8.00 iters/s
+geojson_export    [  68% ] 0/3 VUs      1m21.9s/2m0s  0.03 iters/s
+map_click         [  68% ] 000/012 VUs  1m21.9s/2m0s  5.00 iters/s
+page_load         [  68% ] 00/05 VUs    1m21.9s/2m0s  1.50 iters/s
+partner_pitlane   [  68% ] 000/016 VUs  1m21.9s/2m0s  7.00 iters/s
+partner_transit   [  68% ] 000/030 VUs  1m21.9s/2m0s  14.00 iters/s
+planner_session   [  68% ] 00/03 VUs    1m21.9s/2m0s  0.50 iters/s
+tiles             [  68% ] 000/022 VUs  1m21.9s/2m0s  10.00 iters/s
+
+running (1m23.0s), 0000/0109 VUs, 3822 complete and 0 interrupted iterations
+address_search    [  69% ] 000/018 VUs  1m22.9s/2m0s  8.00 iters/s
+geojson_export    [  69% ] 0/3 VUs      1m22.9s/2m0s  0.03 iters/s
+map_click         [  69% ] 000/012 VUs  1m22.9s/2m0s  5.00 iters/s
+page_load         [  69% ] 00/05 VUs    1m22.9s/2m0s  1.50 iters/s
+partner_pitlane   [  69% ] 000/016 VUs  1m22.9s/2m0s  7.00 iters/s
+partner_transit   [  69% ] 000/030 VUs  1m22.9s/2m0s  14.00 iters/s
+planner_session   [  69% ] 00/03 VUs    1m22.9s/2m0s  0.50 iters/s
+tiles             [  69% ] 000/022 VUs  1m22.9s/2m0s  10.00 iters/s
+
+running (1m24.0s), 0000/0109 VUs, 3867 complete and 0 interrupted iterations
+address_search    [  70% ] 000/018 VUs  1m23.9s/2m0s  8.00 iters/s
+geojson_export    [  70% ] 0/3 VUs      1m23.9s/2m0s  0.03 iters/s
+map_click         [  70% ] 000/012 VUs  1m23.9s/2m0s  5.00 iters/s
+page_load         [  70% ] 00/05 VUs    1m23.9s/2m0s  1.50 iters/s
+partner_pitlane   [  70% ] 000/016 VUs  1m23.9s/2m0s  7.00 iters/s
+partner_transit   [  70% ] 000/030 VUs  1m23.9s/2m0s  14.00 iters/s
+planner_session   [  70% ] 00/03 VUs    1m23.9s/2m0s  0.50 iters/s
+tiles             [  70% ] 000/022 VUs  1m24.0s/2m0s  10.00 iters/s
+
+running (1m25.0s), 0000/0109 VUs, 3914 complete and 0 interrupted iterations
+address_search    [  71% ] 000/018 VUs  1m24.9s/2m0s  8.00 iters/s
+geojson_export    [  71% ] 0/3 VUs      1m24.9s/2m0s  0.03 iters/s
+map_click         [  71% ] 000/012 VUs  1m24.9s/2m0s  5.00 iters/s
+page_load         [  71% ] 00/05 VUs    1m24.9s/2m0s  1.50 iters/s
+partner_pitlane   [  71% ] 000/016 VUs  1m24.9s/2m0s  7.00 iters/s
+partner_transit   [  71% ] 000/030 VUs  1m24.9s/2m0s  14.00 iters/s
+planner_session   [  71% ] 00/03 VUs    1m24.9s/2m0s  0.50 iters/s
+tiles             [  71% ] 000/022 VUs  1m24.9s/2m0s  10.00 iters/s
+
+running (1m26.0s), 0000/0109 VUs, 3959 complete and 0 interrupted iterations
+address_search    [  72% ] 000/018 VUs  1m25.9s/2m0s  8.00 iters/s
+geojson_export    [  72% ] 0/3 VUs      1m25.9s/2m0s  0.03 iters/s
+map_click         [  72% ] 000/012 VUs  1m25.9s/2m0s  5.00 iters/s
+page_load         [  72% ] 00/05 VUs    1m25.9s/2m0s  1.50 iters/s
+partner_pitlane   [  72% ] 000/016 VUs  1m25.9s/2m0s  7.00 iters/s
+partner_transit   [  72% ] 000/030 VUs  1m25.9s/2m0s  14.00 iters/s
+planner_session   [  72% ] 00/03 VUs    1m25.9s/2m0s  0.50 iters/s
+tiles             [  72% ] 000/022 VUs  1m25.9s/2m0s  10.00 iters/s
+
+running (1m27.0s), 0001/0109 VUs, 4005 complete and 0 interrupted iterations
+address_search    [  72% ] 000/018 VUs  1m26.9s/2m0s  8.00 iters/s
+geojson_export    [  72% ] 0/3 VUs      1m26.9s/2m0s  0.03 iters/s
+map_click         [  72% ] 001/012 VUs  1m26.9s/2m0s  5.00 iters/s
+page_load         [  72% ] 00/05 VUs    1m26.9s/2m0s  1.50 iters/s
+partner_pitlane   [  72% ] 000/016 VUs  1m26.9s/2m0s  7.00 iters/s
+partner_transit   [  72% ] 000/030 VUs  1m26.9s/2m0s  14.00 iters/s
+planner_session   [  72% ] 00/03 VUs    1m26.9s/2m0s  0.50 iters/s
+tiles             [  72% ] 000/022 VUs  1m26.9s/2m0s  10.00 iters/s
+
+running (1m28.0s), 0000/0109 VUs, 4051 complete and 0 interrupted iterations
+address_search    [  73% ] 000/018 VUs  1m27.9s/2m0s  8.00 iters/s
+geojson_export    [  73% ] 0/3 VUs      1m27.9s/2m0s  0.03 iters/s
+map_click         [  73% ] 000/012 VUs  1m27.9s/2m0s  5.00 iters/s
+page_load         [  73% ] 00/05 VUs    1m27.9s/2m0s  1.50 iters/s
+partner_pitlane   [  73% ] 000/016 VUs  1m27.9s/2m0s  7.00 iters/s
+partner_transit   [  73% ] 000/030 VUs  1m27.9s/2m0s  14.00 iters/s
+planner_session   [  73% ] 00/03 VUs    1m27.9s/2m0s  0.50 iters/s
+tiles             [  73% ] 000/022 VUs  1m27.9s/2m0s  10.00 iters/s
+
+running (1m29.0s), 0000/0109 VUs, 4098 complete and 0 interrupted iterations
+address_search    [  74% ] 000/018 VUs  1m28.9s/2m0s  8.00 iters/s
+geojson_export    [  74% ] 0/3 VUs      1m28.9s/2m0s  0.03 iters/s
+map_click         [  74% ] 000/012 VUs  1m28.9s/2m0s  5.00 iters/s
+page_load         [  74% ] 00/05 VUs    1m28.9s/2m0s  1.50 iters/s
+partner_pitlane   [  74% ] 000/016 VUs  1m28.9s/2m0s  7.00 iters/s
+partner_transit   [  74% ] 000/030 VUs  1m28.9s/2m0s  14.00 iters/s
+planner_session   [  74% ] 00/03 VUs    1m28.9s/2m0s  0.50 iters/s
+tiles             [  74% ] 000/022 VUs  1m28.9s/2m0s  10.00 iters/s
+
+running (1m30.0s), 0000/0109 VUs, 4143 complete and 0 interrupted iterations
+address_search    [  75% ] 000/018 VUs  1m29.9s/2m0s  8.00 iters/s
+geojson_export    [  75% ] 0/3 VUs      1m29.9s/2m0s  0.03 iters/s
+map_click         [  75% ] 000/012 VUs  1m29.9s/2m0s  5.00 iters/s
+page_load         [  75% ] 00/05 VUs    1m29.9s/2m0s  1.50 iters/s
+partner_pitlane   [  75% ] 000/016 VUs  1m29.9s/2m0s  7.00 iters/s
+partner_transit   [  75% ] 000/030 VUs  1m29.9s/2m0s  14.00 iters/s
+planner_session   [  75% ] 00/03 VUs    1m29.9s/2m0s  0.50 iters/s
+tiles             [  75% ] 000/022 VUs  1m29.9s/2m0s  10.00 iters/s
+
+running (1m31.0s), 0012/0109 VUs, 4179 complete and 0 interrupted iterations
+address_search    [  76% ] 001/018 VUs  1m30.9s/2m0s  8.00 iters/s
+geojson_export    [  76% ] 1/3 VUs      1m30.9s/2m0s  0.03 iters/s
+map_click         [  76% ] 001/012 VUs  1m30.9s/2m0s  5.00 iters/s
+page_load         [  76% ] 01/05 VUs    1m30.9s/2m0s  1.50 iters/s
+partner_pitlane   [  76% ] 003/016 VUs  1m30.9s/2m0s  7.00 iters/s
+partner_transit   [  76% ] 005/030 VUs  1m30.9s/2m0s  14.00 iters/s
+planner_session   [  76% ] 00/03 VUs    1m30.9s/2m0s  0.50 iters/s
+tiles             [  76% ] 000/022 VUs  1m30.9s/2m0s  10.00 iters/s
+
+running (1m32.0s), 0000/0109 VUs, 4236 complete and 0 interrupted iterations
+address_search    [  77% ] 000/018 VUs  1m31.9s/2m0s  8.00 iters/s
+geojson_export    [  77% ] 0/3 VUs      1m31.9s/2m0s  0.03 iters/s
+map_click         [  77% ] 000/012 VUs  1m31.9s/2m0s  5.00 iters/s
+page_load         [  77% ] 00/05 VUs    1m31.9s/2m0s  1.50 iters/s
+partner_pitlane   [  77% ] 000/016 VUs  1m31.9s/2m0s  7.00 iters/s
+partner_transit   [  77% ] 000/030 VUs  1m31.9s/2m0s  14.00 iters/s
+planner_session   [  77% ] 00/03 VUs    1m31.9s/2m0s  0.50 iters/s
+tiles             [  77% ] 000/022 VUs  1m31.9s/2m0s  10.00 iters/s
+
+running (1m33.0s), 0000/0109 VUs, 4283 complete and 0 interrupted iterations
+address_search    [  77% ] 000/018 VUs  1m32.9s/2m0s  8.00 iters/s
+geojson_export    [  77% ] 0/3 VUs      1m32.9s/2m0s  0.03 iters/s
+map_click         [  77% ] 000/012 VUs  1m32.9s/2m0s  5.00 iters/s
+page_load         [  77% ] 00/05 VUs    1m32.9s/2m0s  1.50 iters/s
+partner_pitlane   [  77% ] 000/016 VUs  1m32.9s/2m0s  7.00 iters/s
+partner_transit   [  77% ] 000/030 VUs  1m32.9s/2m0s  14.00 iters/s
+planner_session   [  77% ] 00/03 VUs    1m32.9s/2m0s  0.50 iters/s
+tiles             [  77% ] 000/022 VUs  1m32.9s/2m0s  10.00 iters/s
+
+running (1m34.0s), 0000/0109 VUs, 4328 complete and 0 interrupted iterations
+address_search    [  78% ] 000/018 VUs  1m33.9s/2m0s  8.00 iters/s
+geojson_export    [  78% ] 0/3 VUs      1m33.9s/2m0s  0.03 iters/s
+map_click         [  78% ] 000/012 VUs  1m33.9s/2m0s  5.00 iters/s
+page_load         [  78% ] 00/05 VUs    1m33.9s/2m0s  1.50 iters/s
+partner_pitlane   [  78% ] 000/016 VUs  1m33.9s/2m0s  7.00 iters/s
+partner_transit   [  78% ] 000/030 VUs  1m33.9s/2m0s  14.00 iters/s
+planner_session   [  78% ] 00/03 VUs    1m33.9s/2m0s  0.50 iters/s
+tiles             [  78% ] 000/022 VUs  1m33.9s/2m0s  10.00 iters/s
+
+running (1m35.0s), 0001/0109 VUs, 4374 complete and 0 interrupted iterations
+address_search    [  79% ] 000/018 VUs  1m34.9s/2m0s  8.00 iters/s
+geojson_export    [  79% ] 0/3 VUs      1m34.9s/2m0s  0.03 iters/s
+map_click         [  79% ] 001/012 VUs  1m34.9s/2m0s  5.00 iters/s
+page_load         [  79% ] 00/05 VUs    1m34.9s/2m0s  1.50 iters/s
+partner_pitlane   [  79% ] 000/016 VUs  1m34.9s/2m0s  7.00 iters/s
+partner_transit   [  79% ] 000/030 VUs  1m34.9s/2m0s  14.00 iters/s
+planner_session   [  79% ] 00/03 VUs    1m34.9s/2m0s  0.50 iters/s
+tiles             [  79% ] 000/022 VUs  1m35.0s/2m0s  10.00 iters/s
+
+running (1m36.0s), 0000/0109 VUs, 4420 complete and 0 interrupted iterations
+address_search    [  80% ] 000/018 VUs  1m35.9s/2m0s  8.00 iters/s
+geojson_export    [  80% ] 0/3 VUs      1m35.9s/2m0s  0.03 iters/s
+map_click         [  80% ] 000/012 VUs  1m35.9s/2m0s  5.00 iters/s
+page_load         [  80% ] 00/05 VUs    1m35.9s/2m0s  1.50 iters/s
+partner_pitlane   [  80% ] 000/016 VUs  1m35.9s/2m0s  7.00 iters/s
+partner_transit   [  80% ] 000/030 VUs  1m35.9s/2m0s  14.00 iters/s
+planner_session   [  80% ] 00/03 VUs    1m35.9s/2m0s  0.50 iters/s
+tiles             [  80% ] 000/022 VUs  1m35.9s/2m0s  10.00 iters/s
+
+running (1m37.0s), 0000/0109 VUs, 4467 complete and 0 interrupted iterations
+address_search    [  81% ] 000/018 VUs  1m36.9s/2m0s  8.00 iters/s
+geojson_export    [  81% ] 0/3 VUs      1m36.9s/2m0s  0.03 iters/s
+map_click         [  81% ] 000/012 VUs  1m36.9s/2m0s  5.00 iters/s
+page_load         [  81% ] 00/05 VUs    1m36.9s/2m0s  1.50 iters/s
+partner_pitlane   [  81% ] 000/016 VUs  1m36.9s/2m0s  7.00 iters/s
+partner_transit   [  81% ] 000/030 VUs  1m36.9s/2m0s  14.00 iters/s
+planner_session   [  81% ] 00/03 VUs    1m36.9s/2m0s  0.50 iters/s
+tiles             [  81% ] 000/022 VUs  1m36.9s/2m0s  10.00 iters/s
+
+running (1m38.0s), 0001/0109 VUs, 4511 complete and 0 interrupted iterations
+address_search    [  82% ] 000/018 VUs  1m37.9s/2m0s  8.00 iters/s
+geojson_export    [  82% ] 0/3 VUs      1m37.9s/2m0s  0.03 iters/s
+map_click         [  82% ] 000/012 VUs  1m37.9s/2m0s  5.00 iters/s
+page_load         [  82% ] 00/05 VUs    1m37.9s/2m0s  1.50 iters/s
+partner_pitlane   [  82% ] 000/016 VUs  1m37.9s/2m0s  7.00 iters/s
+partner_transit   [  82% ] 001/030 VUs  1m37.9s/2m0s  14.00 iters/s
+planner_session   [  82% ] 00/03 VUs    1m37.9s/2m0s  0.50 iters/s
+tiles             [  82% ] 000/022 VUs  1m37.9s/2m0s  10.00 iters/s
+
+running (1m39.0s), 0000/0109 VUs, 4559 complete and 0 interrupted iterations
+address_search    [  82% ] 000/018 VUs  1m38.9s/2m0s  8.00 iters/s
+geojson_export    [  82% ] 0/3 VUs      1m38.9s/2m0s  0.03 iters/s
+map_click         [  82% ] 000/012 VUs  1m38.9s/2m0s  5.00 iters/s
+page_load         [  82% ] 00/05 VUs    1m38.9s/2m0s  1.50 iters/s
+partner_pitlane   [  82% ] 000/016 VUs  1m38.9s/2m0s  7.00 iters/s
+partner_transit   [  82% ] 000/030 VUs  1m38.9s/2m0s  14.00 iters/s
+planner_session   [  82% ] 00/03 VUs    1m38.9s/2m0s  0.50 iters/s
+tiles             [  82% ] 000/022 VUs  1m38.9s/2m0s  10.00 iters/s
+
+running (1m40.0s), 0000/0109 VUs, 4604 complete and 0 interrupted iterations
+address_search    [  83% ] 000/018 VUs  1m39.9s/2m0s  8.00 iters/s
+geojson_export    [  83% ] 0/3 VUs      1m39.9s/2m0s  0.03 iters/s
+map_click         [  83% ] 000/012 VUs  1m39.9s/2m0s  5.00 iters/s
+page_load         [  83% ] 00/05 VUs    1m39.9s/2m0s  1.50 iters/s
+partner_pitlane   [  83% ] 000/016 VUs  1m39.9s/2m0s  7.00 iters/s
+partner_transit   [  83% ] 000/030 VUs  1m39.9s/2m0s  14.00 iters/s
+planner_session   [  83% ] 00/03 VUs    1m39.9s/2m0s  0.50 iters/s
+tiles             [  83% ] 000/022 VUs  1m39.9s/2m0s  10.00 iters/s
+
+running (1m41.0s), 0000/0109 VUs, 4651 complete and 0 interrupted iterations
+address_search    [  84% ] 000/018 VUs  1m40.9s/2m0s  8.00 iters/s
+geojson_export    [  84% ] 0/3 VUs      1m40.9s/2m0s  0.03 iters/s
+map_click         [  84% ] 000/012 VUs  1m40.9s/2m0s  5.00 iters/s
+page_load         [  84% ] 00/05 VUs    1m40.9s/2m0s  1.50 iters/s
+partner_pitlane   [  84% ] 000/016 VUs  1m40.9s/2m0s  7.00 iters/s
+partner_transit   [  84% ] 000/030 VUs  1m40.9s/2m0s  14.00 iters/s
+planner_session   [  84% ] 00/03 VUs    1m40.9s/2m0s  0.50 iters/s
+tiles             [  84% ] 000/022 VUs  1m40.9s/2m0s  10.00 iters/s
+
+running (1m42.0s), 0000/0109 VUs, 4696 complete and 0 interrupted iterations
+address_search    [  85% ] 000/018 VUs  1m41.9s/2m0s  8.00 iters/s
+geojson_export    [  85% ] 0/3 VUs      1m41.9s/2m0s  0.03 iters/s
+map_click         [  85% ] 000/012 VUs  1m41.9s/2m0s  5.00 iters/s
+page_load         [  85% ] 00/05 VUs    1m41.9s/2m0s  1.50 iters/s
+partner_pitlane   [  85% ] 000/016 VUs  1m41.9s/2m0s  7.00 iters/s
+partner_transit   [  85% ] 000/030 VUs  1m41.9s/2m0s  14.00 iters/s
+planner_session   [  85% ] 00/03 VUs    1m41.9s/2m0s  0.50 iters/s
+tiles             [  85% ] 000/022 VUs  1m41.9s/2m0s  10.00 iters/s
+
+running (1m43.0s), 0000/0109 VUs, 4743 complete and 0 interrupted iterations
+address_search    [  86% ] 000/018 VUs  1m42.9s/2m0s  8.00 iters/s
+geojson_export    [  86% ] 0/3 VUs      1m42.9s/2m0s  0.03 iters/s
+map_click         [  86% ] 000/012 VUs  1m42.9s/2m0s  5.00 iters/s
+page_load         [  86% ] 00/05 VUs    1m42.9s/2m0s  1.50 iters/s
+partner_pitlane   [  86% ] 000/016 VUs  1m42.9s/2m0s  7.00 iters/s
+partner_transit   [  86% ] 000/030 VUs  1m42.9s/2m0s  14.00 iters/s
+planner_session   [  86% ] 00/03 VUs    1m42.9s/2m0s  0.50 iters/s
+tiles             [  86% ] 000/022 VUs  1m42.9s/2m0s  10.00 iters/s
+
+running (1m44.0s), 0000/0109 VUs, 4788 complete and 0 interrupted iterations
+address_search    [  87% ] 000/018 VUs  1m43.9s/2m0s  8.00 iters/s
+geojson_export    [  87% ] 0/3 VUs      1m43.9s/2m0s  0.03 iters/s
+map_click         [  87% ] 000/012 VUs  1m43.9s/2m0s  5.00 iters/s
+page_load         [  87% ] 00/05 VUs    1m43.9s/2m0s  1.50 iters/s
+partner_pitlane   [  87% ] 000/016 VUs  1m43.9s/2m0s  7.00 iters/s
+partner_transit   [  87% ] 000/030 VUs  1m43.9s/2m0s  14.00 iters/s
+planner_session   [  87% ] 00/03 VUs    1m43.9s/2m0s  0.50 iters/s
+tiles             [  87% ] 000/022 VUs  1m43.9s/2m0s  10.00 iters/s
+
+running (1m45.0s), 0000/0109 VUs, 4835 complete and 0 interrupted iterations
+address_search    [  87% ] 000/018 VUs  1m44.9s/2m0s  8.00 iters/s
+geojson_export    [  87% ] 0/3 VUs      1m44.9s/2m0s  0.03 iters/s
+map_click         [  87% ] 000/012 VUs  1m44.9s/2m0s  5.00 iters/s
+page_load         [  87% ] 00/05 VUs    1m44.9s/2m0s  1.50 iters/s
+partner_pitlane   [  87% ] 000/016 VUs  1m44.9s/2m0s  7.00 iters/s
+partner_transit   [  87% ] 000/030 VUs  1m44.9s/2m0s  14.00 iters/s
+planner_session   [  87% ] 00/03 VUs    1m44.9s/2m0s  0.50 iters/s
+tiles             [  87% ] 000/022 VUs  1m44.9s/2m0s  10.00 iters/s
+
+running (1m46.0s), 0000/0109 VUs, 4880 complete and 0 interrupted iterations
+address_search    [  88% ] 000/018 VUs  1m45.9s/2m0s  8.00 iters/s
+geojson_export    [  88% ] 0/3 VUs      1m45.9s/2m0s  0.03 iters/s
+map_click         [  88% ] 000/012 VUs  1m45.9s/2m0s  5.00 iters/s
+page_load         [  88% ] 00/05 VUs    1m45.9s/2m0s  1.50 iters/s
+partner_pitlane   [  88% ] 000/016 VUs  1m45.9s/2m0s  7.00 iters/s
+partner_transit   [  88% ] 000/030 VUs  1m45.9s/2m0s  14.00 iters/s
+planner_session   [  88% ] 00/03 VUs    1m45.9s/2m0s  0.50 iters/s
+tiles             [  88% ] 000/022 VUs  1m45.9s/2m0s  10.00 iters/s
+
+running (1m47.0s), 0000/0109 VUs, 4927 complete and 0 interrupted iterations
+address_search    [  89% ] 000/018 VUs  1m46.9s/2m0s  8.00 iters/s
+geojson_export    [  89% ] 0/3 VUs      1m46.9s/2m0s  0.03 iters/s
+map_click         [  89% ] 000/012 VUs  1m46.9s/2m0s  5.00 iters/s
+page_load         [  89% ] 00/05 VUs    1m46.9s/2m0s  1.50 iters/s
+partner_pitlane   [  89% ] 000/016 VUs  1m46.9s/2m0s  7.00 iters/s
+partner_transit   [  89% ] 000/030 VUs  1m46.9s/2m0s  14.00 iters/s
+planner_session   [  89% ] 00/03 VUs    1m46.9s/2m0s  0.50 iters/s
+tiles             [  89% ] 000/022 VUs  1m46.9s/2m0s  10.00 iters/s
+
+running (1m48.0s), 0000/0109 VUs, 4972 complete and 0 interrupted iterations
+address_search    [  90% ] 000/018 VUs  1m47.9s/2m0s  8.00 iters/s
+geojson_export    [  90% ] 0/3 VUs      1m47.9s/2m0s  0.03 iters/s
+map_click         [  90% ] 000/012 VUs  1m47.9s/2m0s  5.00 iters/s
+page_load         [  90% ] 00/05 VUs    1m47.9s/2m0s  1.50 iters/s
+partner_pitlane   [  90% ] 000/016 VUs  1m47.9s/2m0s  7.00 iters/s
+partner_transit   [  90% ] 000/030 VUs  1m47.9s/2m0s  14.00 iters/s
+planner_session   [  90% ] 00/03 VUs    1m47.9s/2m0s  0.50 iters/s
+tiles             [  90% ] 000/022 VUs  1m47.9s/2m0s  10.00 iters/s
+
+running (1m49.0s), 0000/0109 VUs, 5019 complete and 0 interrupted iterations
+address_search    [  91% ] 000/018 VUs  1m48.9s/2m0s  8.00 iters/s
+geojson_export    [  91% ] 0/3 VUs      1m48.9s/2m0s  0.03 iters/s
+map_click         [  91% ] 000/012 VUs  1m48.9s/2m0s  5.00 iters/s
+page_load         [  91% ] 00/05 VUs    1m48.9s/2m0s  1.50 iters/s
+partner_pitlane   [  91% ] 000/016 VUs  1m48.9s/2m0s  7.00 iters/s
+partner_transit   [  91% ] 000/030 VUs  1m48.9s/2m0s  14.00 iters/s
+planner_session   [  91% ] 00/03 VUs    1m48.9s/2m0s  0.50 iters/s
+tiles             [  91% ] 000/022 VUs  1m48.9s/2m0s  10.00 iters/s
+
+running (1m50.0s), 0000/0109 VUs, 5064 complete and 0 interrupted iterations
+address_search    [  92% ] 000/018 VUs  1m49.9s/2m0s  8.00 iters/s
+geojson_export    [  92% ] 0/3 VUs      1m49.9s/2m0s  0.03 iters/s
+map_click         [  92% ] 000/012 VUs  1m49.9s/2m0s  5.00 iters/s
+page_load         [  92% ] 00/05 VUs    1m49.9s/2m0s  1.50 iters/s
+partner_pitlane   [  92% ] 000/016 VUs  1m49.9s/2m0s  7.00 iters/s
+partner_transit   [  92% ] 000/030 VUs  1m49.9s/2m0s  14.00 iters/s
+planner_session   [  92% ] 00/03 VUs    1m49.9s/2m0s  0.50 iters/s
+tiles             [  92% ] 000/022 VUs  1m49.9s/2m0s  10.00 iters/s
+
+running (1m51.0s), 0000/0109 VUs, 5111 complete and 0 interrupted iterations
+address_search    [  92% ] 000/018 VUs  1m50.9s/2m0s  8.00 iters/s
+geojson_export    [  92% ] 0/3 VUs      1m50.9s/2m0s  0.03 iters/s
+map_click         [  92% ] 000/012 VUs  1m50.9s/2m0s  5.00 iters/s
+page_load         [  92% ] 00/05 VUs    1m50.9s/2m0s  1.50 iters/s
+partner_pitlane   [  92% ] 000/016 VUs  1m50.9s/2m0s  7.00 iters/s
+partner_transit   [  92% ] 000/030 VUs  1m50.9s/2m0s  14.00 iters/s
+planner_session   [  92% ] 00/03 VUs    1m50.9s/2m0s  0.50 iters/s
+tiles             [  92% ] 000/022 VUs  1m50.9s/2m0s  10.00 iters/s
+
+running (1m52.0s), 0000/0109 VUs, 5156 complete and 0 interrupted iterations
+address_search    [  93% ] 000/018 VUs  1m51.9s/2m0s  8.00 iters/s
+geojson_export    [  93% ] 0/3 VUs      1m51.9s/2m0s  0.03 iters/s
+map_click         [  93% ] 000/012 VUs  1m51.9s/2m0s  5.00 iters/s
+page_load         [  93% ] 00/05 VUs    1m51.9s/2m0s  1.50 iters/s
+partner_pitlane   [  93% ] 000/016 VUs  1m51.9s/2m0s  7.00 iters/s
+partner_transit   [  93% ] 000/030 VUs  1m51.9s/2m0s  14.00 iters/s
+planner_session   [  93% ] 00/03 VUs    1m51.9s/2m0s  0.50 iters/s
+tiles             [  93% ] 000/022 VUs  1m51.9s/2m0s  10.00 iters/s
+
+running (1m53.0s), 0000/0109 VUs, 5203 complete and 0 interrupted iterations
+address_search    [  94% ] 000/018 VUs  1m52.9s/2m0s  8.00 iters/s
+geojson_export    [  94% ] 0/3 VUs      1m52.9s/2m0s  0.03 iters/s
+map_click         [  94% ] 000/012 VUs  1m52.9s/2m0s  5.00 iters/s
+page_load         [  94% ] 00/05 VUs    1m52.9s/2m0s  1.50 iters/s
+partner_pitlane   [  94% ] 000/016 VUs  1m52.9s/2m0s  7.00 iters/s
+partner_transit   [  94% ] 000/030 VUs  1m52.9s/2m0s  14.00 iters/s
+planner_session   [  94% ] 00/03 VUs    1m52.9s/2m0s  0.50 iters/s
+tiles             [  94% ] 000/022 VUs  1m52.9s/2m0s  10.00 iters/s
+
+running (1m54.0s), 0000/0109 VUs, 5248 complete and 0 interrupted iterations
+address_search    [  95% ] 000/018 VUs  1m53.9s/2m0s  8.00 iters/s
+geojson_export    [  95% ] 0/3 VUs      1m53.9s/2m0s  0.03 iters/s
+map_click         [  95% ] 000/012 VUs  1m53.9s/2m0s  5.00 iters/s
+page_load         [  95% ] 00/05 VUs    1m53.9s/2m0s  1.50 iters/s
+partner_pitlane   [  95% ] 000/016 VUs  1m53.9s/2m0s  7.00 iters/s
+partner_transit   [  95% ] 000/030 VUs  1m53.9s/2m0s  14.00 iters/s
+planner_session   [  95% ] 00/03 VUs    1m53.9s/2m0s  0.50 iters/s
+tiles             [  95% ] 000/022 VUs  1m53.9s/2m0s  10.00 iters/s
+
+running (1m55.0s), 0000/0109 VUs, 5295 complete and 0 interrupted iterations
+address_search    [  96% ] 000/018 VUs  1m54.9s/2m0s  8.00 iters/s
+geojson_export    [  96% ] 0/3 VUs      1m54.9s/2m0s  0.03 iters/s
+map_click         [  96% ] 000/012 VUs  1m54.9s/2m0s  5.00 iters/s
+page_load         [  96% ] 00/05 VUs    1m54.9s/2m0s  1.50 iters/s
+partner_pitlane   [  96% ] 000/016 VUs  1m54.9s/2m0s  7.00 iters/s
+partner_transit   [  96% ] 000/030 VUs  1m54.9s/2m0s  14.00 iters/s
+planner_session   [  96% ] 00/03 VUs    1m54.9s/2m0s  0.50 iters/s
+tiles             [  96% ] 000/022 VUs  1m54.9s/2m0s  10.00 iters/s
+
+running (1m56.0s), 0000/0109 VUs, 5340 complete and 0 interrupted iterations
+address_search    [  97% ] 000/018 VUs  1m55.9s/2m0s  8.00 iters/s
+geojson_export    [  97% ] 0/3 VUs      1m55.9s/2m0s  0.03 iters/s
+map_click         [  97% ] 000/012 VUs  1m55.9s/2m0s  5.00 iters/s
+page_load         [  97% ] 00/05 VUs    1m55.9s/2m0s  1.50 iters/s
+partner_pitlane   [  97% ] 000/016 VUs  1m55.9s/2m0s  7.00 iters/s
+partner_transit   [  97% ] 000/030 VUs  1m55.9s/2m0s  14.00 iters/s
+planner_session   [  97% ] 00/03 VUs    1m55.9s/2m0s  0.50 iters/s
+tiles             [  97% ] 000/022 VUs  1m55.9s/2m0s  10.00 iters/s
+
+running (1m57.0s), 0000/0109 VUs, 5387 complete and 0 interrupted iterations
+address_search    [  97% ] 000/018 VUs  1m56.9s/2m0s  8.00 iters/s
+geojson_export    [  97% ] 0/3 VUs      1m56.9s/2m0s  0.03 iters/s
+map_click         [  97% ] 000/012 VUs  1m56.9s/2m0s  5.00 iters/s
+page_load         [  97% ] 00/05 VUs    1m56.9s/2m0s  1.50 iters/s
+partner_pitlane   [  97% ] 000/016 VUs  1m56.9s/2m0s  7.00 iters/s
+partner_transit   [  97% ] 000/030 VUs  1m56.9s/2m0s  14.00 iters/s
+planner_session   [  97% ] 00/03 VUs    1m56.9s/2m0s  0.50 iters/s
+tiles             [  97% ] 000/022 VUs  1m57.0s/2m0s  10.00 iters/s
+
+running (1m58.0s), 0000/0109 VUs, 5432 complete and 0 interrupted iterations
+address_search    [  98% ] 000/018 VUs  1m57.9s/2m0s  8.00 iters/s
+geojson_export    [  98% ] 0/3 VUs      1m57.9s/2m0s  0.03 iters/s
+map_click         [  98% ] 000/012 VUs  1m57.9s/2m0s  5.00 iters/s
+page_load         [  98% ] 00/05 VUs    1m57.9s/2m0s  1.50 iters/s
+partner_pitlane   [  98% ] 000/016 VUs  1m57.9s/2m0s  7.00 iters/s
+partner_transit   [  98% ] 000/030 VUs  1m57.9s/2m0s  14.00 iters/s
+planner_session   [  98% ] 00/03 VUs    1m57.9s/2m0s  0.50 iters/s
+tiles             [  98% ] 000/022 VUs  1m57.9s/2m0s  10.00 iters/s
+
+running (1m59.0s), 0001/0109 VUs, 5478 complete and 0 interrupted iterations
+address_search    [  99% ] 000/018 VUs  1m58.9s/2m0s  8.00 iters/s
+geojson_export    [  99% ] 0/3 VUs      1m58.9s/2m0s  0.03 iters/s
+map_click         [  99% ] 001/012 VUs  1m58.9s/2m0s  5.00 iters/s
+page_load         [  99% ] 00/05 VUs    1m58.9s/2m0s  1.50 iters/s
+partner_pitlane   [  99% ] 000/016 VUs  1m58.9s/2m0s  7.00 iters/s
+partner_transit   [  99% ] 000/030 VUs  1m58.9s/2m0s  14.00 iters/s
+planner_session   [  99% ] 00/03 VUs    1m58.9s/2m0s  0.50 iters/s
+tiles             [  99% ] 000/022 VUs  1m58.9s/2m0s  10.00 iters/s
+
+running (2m00.0s), 0000/0109 VUs, 5524 complete and 0 interrupted iterations
+address_search    [ 100% ] 000/018 VUs  1m59.9s/2m0s  8.00 iters/s
+geojson_export    [ 100% ] 0/3 VUs      1m59.9s/2m0s  0.03 iters/s
+map_click         [ 100% ] 000/012 VUs  1m59.9s/2m0s  5.00 iters/s
+page_load         [ 100% ] 00/05 VUs    1m59.9s/2m0s  1.50 iters/s
+partner_pitlane   [ 100% ] 000/016 VUs  1m59.9s/2m0s  7.00 iters/s
+partner_transit   [ 100% ] 000/030 VUs  1m59.9s/2m0s  14.00 iters/s
+planner_session   [ 100% ] 00/03 VUs    1m59.9s/2m0s  0.50 iters/s
+tiles             [ 100% ] 000/022 VUs  1m59.9s/2m0s  10.00 iters/s
+
+CityMap traffic: baseline (121s)
+
+endpoint             count       p50       p95       p99       max
+layers                 241       4ms       8ms      18ms     311ms
+summary                724       3ms       8ms      13ms     312ms
+features_at            660       4ms     170ms     220ms     377ms
+geojson                  5      52ms     959ms     969ms     972ms
+search                 960       5ms      25ms      30ms     149ms
+partner_features      2522       3ms       6ms      12ms     687ms
+announcements          181       3ms       7ms      12ms      25ms
+tiles                 1201       1ms       2ms       4ms      46ms
+
+http requests: 6496 (53.7/s), failed: 0.00%
+sdk attempts: 5293, failed attempts: 0, dropped iterations: 0
+
+running (2m00.9s), 0000/0109 VUs, 5529 complete and 0 interrupted iterations
+address_search  ✓ [ 100% ] 000/018 VUs  2m0s  8.00 iters/s
+geojson_export  ✓ [ 100% ] 0/3 VUs      2m0s  0.03 iters/s
+map_click       ✓ [ 100% ] 000/012 VUs  2m0s  5.00 iters/s
+page_load       ✓ [ 100% ] 00/05 VUs    2m0s  1.50 iters/s
+partner_pitlane ✓ [ 100% ] 000/016 VUs  2m0s  7.00 iters/s
+partner_transit ✓ [ 100% ] 000/030 VUs  2m0s  14.00 iters/s
+planner_session ✓ [ 100% ] 00/03 VUs    2m0s  0.50 iters/s
+tiles           ✓ [ 100% ] 000/022 VUs  2m0s  10.00 iters/s
