@@ -7,7 +7,7 @@ K6_IMAGE   ?= grafana/k6:2.3.0
 K6         ?= docker run --rm -i --user "$$(id -u):$$(id -g)" --network k3d-$(CLUSTER) -v "$(CURDIR)":/work -w /work $(K6_IMAGE)
 BASE_URL   ?= $(if $(filter k6,$(K6)),http://localhost:8080,http://k3d-$(CLUSTER)-serverlb)
 K6_FLAGS   ?=
-API_TAG    := 1.4.2
+API_TAG    := 1.4.3
 PUB_TAG    := 1.1.0
 PG_TAG     := 17-4
 
@@ -49,14 +49,13 @@ peak: ## Peak traffic (MULTIPLIER=10 or 50, DURATION=5m)
 soak: ## Baseline traffic for a long run (DURATION=20m)
 	$(K6) run $(K6_FLAGS) -e BASE_URL=$(BASE_URL) -e SCENARIO=soak -e DURATION=$(or $(DURATION),20m) traffic/main.ts
 
+status: ## Pods, autoscaler and jobs
+	kubectl -n $(NAMESPACE) get pods,hpa,jobs -o wide
 
 observe: ## Install Prometheus + Grafana (self-hosted) with dashboard and alert rules
 	kubectl apply -k deploy/observability
 	@echo "Grafana: kubectl -n observability port-forward svc/grafana 3001:3000"
 	@echo "Prometheus: kubectl -n observability port-forward svc/prometheus 9090:9090"
-
-status: ## Pods, autoscaler and jobs
-	kubectl -n $(NAMESPACE) get pods,hpa,jobs -o wide
 
 destroy: ## Delete the local cluster
 	k3d cluster delete $(CLUSTER)

@@ -5,6 +5,13 @@ import { DatabaseService } from '../infra/database.service';
 export class HealthController {
   constructor(private readonly db: DatabaseService) {}
 
+  /** Liveness: process is up. Must not touch Postgres (slow queries must not kill the pod). */
+  @Get('live')
+  live() {
+    return { status: 'ok' };
+  }
+
+  /** Readiness / legacy probe: includes a cheap DB ping. */
   @Get()
   async check() {
     try {

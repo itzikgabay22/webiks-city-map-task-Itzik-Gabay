@@ -21,12 +21,15 @@ const SUMMARY_SQL: Record<string, string> = {
     LEFT JOIN addresses a ON a.parcel_id = p.id
     GROUP BY p.land_use
     ORDER BY p.land_use`,
+  // Geodesic area/perimeter on survey-resolution coastal rings (~150k–300k vertices)
+  // takes ~0.5–1s+ and, when SUMMARY_CACHE_TTL expires, freezes the whole API pool.
+  // Envelope-based stats stay regionally meaningful without walking every coastline vertex.
   admin_boundaries: `
     SELECT region,
            count(*)::int AS districts,
            sum(population)::int AS population,
-           round(sum(ST_Area(geom::geography)) / 1e6) AS "areaKm2",
-           round(sum(ST_Perimeter(geom::geography)) / 1e3) AS "boundaryKm"
+           round(sum(ST_Area(ST_Envelope(geom)::geography)) / 1e6) AS "areaKm2",
+           round(sum(ST_Perimeter(ST_Envelope(geom)::geography)) / 1e3) AS "boundaryKm"
     FROM admin_boundaries
     GROUP BY region
     ORDER BY region`,

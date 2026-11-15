@@ -5,7 +5,10 @@ import { config } from '../config';
 @Injectable()
 export class CacheService implements OnModuleDestroy {
   private readonly logger = new Logger(CacheService.name);
-  private readonly redis = new Redis(config.redisUrl, { maxRetriesPerRequest: 2 });
+  private readonly redis = new Redis(config.redisUrl, {
+    maxRetriesPerRequest: 3,
+    enableOfflineQueue: true,
+  });
 
   async get<T>(key: string): Promise<T | undefined> {
     try {

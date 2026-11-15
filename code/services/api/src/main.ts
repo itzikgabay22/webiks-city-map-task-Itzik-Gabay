@@ -1,6 +1,7 @@
 import 'reflect-metadata';
 import { NestFactory } from '@nestjs/core';
 import { NestExpressApplication } from '@nestjs/platform-express';
+import { createHash } from 'node:crypto';
 import type { NextFunction, Request, Response } from 'express';
 import { rateLimit } from 'express-rate-limit';
 import Redis from 'ioredis';
@@ -16,14 +17,23 @@ async function bootstrap(): Promise<void> {
   // Public data must be embeddable by any site (see docs/ARCHITECTURE.md).
   app.enableCors({ origin: '*', methods: ['GET', 'POST'], maxAge: 600 });
 
-  // Part 1.2 — Prometheus metrics (self-hosted scrape target).
   app.use(metricsMiddleware);
   app.use('/metrics', (req: Request, res: Response, next: NextFunction) => {
     void metricsHandler(req, res).catch(next);
   });
 
-  // Partner API quota, shared by all API replicas through Redis.
-  const limiterRedis = new Redis(config.redisUrl, { maxRetriesPerRequest: 2 });
+  // Partner API quota: one bucket per API key (not per ingress IP), shared across replicas.
+  // maxRetriesPerRequest=null avoids MaxRetriesPerRequestError turning partner traffic into HTTP 500.
+  const limiterRedis = new Redis(config.redisUrl, {
+    maxRetriesPerRequest: null,
+    enableReadyCheck: true,
+    lazyConnect: false,
+  });
+  limiterRedis.on('error', (err) => {
+    // Keep the process up; passOnStoreError lets traffic through if Redis blips.
+    console.warn(`partner rate-limit redis: ${err.message}`);
+  });
+
   app.use(
     '/partner',
     rateLimit({
@@ -31,9 +41,16 @@ async function bootstrap(): Promise<void> {
       limit: config.partnerRequestsPerMinute,
       standardHeaders: 'draft-8',
       legacyHeaders: false,
+      passOnStoreError: true,
+      keyGenerator: (req) => {
+        const apiKey = req.header('x-api-key');
+        if (apiKey) return `key:${createHash('sha256').update(apiKey).digest('hex')}`;
+        return `ip:${req.ip ?? 'unknown'}`;
+      },
       store: new RedisStore({
         prefix: 'ratelimit:partner:',
-        sendCommand: (command: string, ...args: string[]) => limiterRedis.call(command, ...args) as Promise<RedisReply>,
+        sendCommand: (command: string, ...args: string[]) =>
+          limiterRedis.call(command, ...args) as Promise<RedisReply>,
       }),
     }),
   );

@@ -39,7 +39,16 @@ export class FeaturesService {
         const match = source.pointRadiusDeg
           ? `ST_DWithin(t.geom, pt.geom, ${source.pointRadiusDeg})`
           : 'ST_Intersects(t.geom, pt.geom)';
-        return `(SELECT '${id}' AS layer, t.id, ${source.properties} AS properties, ST_AsGeoJSON(t.geom)::json AS geometry
+        // Click payloads must stay small and cheap: surveyed coastal districts have
+        // 150k–300k vertices. Full (or even simplified) GeoJSON stalls Postgres.
+        let geometrySql = 'ST_AsGeoJSON(t.geom)::json';
+        if (source.clickGeometry === 'envelope') {
+          geometrySql = 'ST_AsGeoJSON(ST_Envelope(t.geom))::json';
+        } else if (source.clickGeometry?.startsWith('simplify:')) {
+          const tol = source.clickGeometry.slice('simplify:'.length);
+          geometrySql = `ST_AsGeoJSON(ST_SimplifyPreserveTopology(t.geom, ${tol}))::json`;
+        }
+        return `(SELECT '${id}' AS layer, t.id, ${source.properties} AS properties, ${geometrySql} AS geometry
                  FROM ${source.table} t, layers l, pt
                  WHERE l.id = '${id}' AND ${readableBy('$3')} AND ${match}
                  ORDER BY t.id

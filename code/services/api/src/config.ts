@@ -20,10 +20,12 @@ export const config = {
   jwtSecret: required('JWT_SECRET'),
   cacheTtlSeconds: {
     features: int('FEATURES_CACHE_TTL', 60),
-    summary: int('SUMMARY_CACHE_TTL', 120),
-    announcements: int('ANNOUNCEMENTS_CACHE_TTL', 3600),
+    summary: int('SUMMARY_CACHE_TTL', 600),
+    // Keep short so a published race-weekend dataset is visible within seconds,
+    // even before a CDN invalidation lands.
+    announcements: int('ANNOUNCEMENTS_CACHE_TTL', 15),
   },
-  partnerRequestsPerMinute: int('PARTNER_RATE_LIMIT', 600),
+  partnerRequestsPerMinute: int('PARTNER_RATE_LIMIT', 1000),
   defaultClickLayers: (process.env.DEFAULT_CLICK_LAYERS ?? 'parcels,addresses,admin_boundaries').split(','),
 };
 

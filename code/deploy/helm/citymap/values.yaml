@@ -1,7 +1,7 @@
 images:
   api:
     repository: citymap-api
-    tag: "1.4.2"
+    tag: "1.4.3"
   publisher:
     repository: citymap-publisher
     tag: "1.1.0"
@@ -25,10 +25,10 @@ api:
   replicas: 2
   port: 3000
   env:
-    SUMMARY_CACHE_TTL: "120"
+    SUMMARY_CACHE_TTL: "600"
     FEATURES_CACHE_TTL: "60"
-    ANNOUNCEMENTS_CACHE_TTL: "3600"
-    PARTNER_RATE_LIMIT: "600"
+    ANNOUNCEMENTS_CACHE_TTL: "15"
+    PARTNER_RATE_LIMIT: "1000"
   resources:
     requests:
       cpu: 500m
@@ -42,7 +42,8 @@ api:
     maxReplicas: 10
     targetCPUUtilizationPercentage: 70
   probes:
-    path: /health
+    readinessPath: /health
+    livenessPath: /health/live
     periodSeconds: 10
     timeoutSeconds: 2
     failureThreshold: 3

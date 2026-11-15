@@ -5,6 +5,13 @@ export interface LayerSource {
   properties: string;
   /** Point layers are matched within a small radius instead of by intersection. */
   pointRadiusDeg?: number;
+  /**
+   * How map-click responses encode geometry for this layer.
+   * - full: ST_AsGeoJSON(geom)
+   * - envelope: bounding box only (survey-resolution coastlines)
+   * - simplify:<deg>: ST_SimplifyPreserveTopology
+   */
+  clickGeometry?: 'full' | 'envelope' | `simplify:${number}`;
 }
 
 export const LAYER_SOURCES: Record<string, LayerSource> = {
@@ -20,6 +27,9 @@ export const LAYER_SOURCES: Record<string, LayerSource> = {
   admin_boundaries: {
     table: 'admin_boundaries',
     properties: `jsonb_build_object('name', t.name, 'region', t.region, 'population', t.population)`,
+    // Envelope only: simplifying 150k–300k coastal vertices still burned hundreds of ms
+    // per click under peak and helped tip PostGIS into crash loops at ×10.
+    clickGeometry: 'envelope',
   },
   announcements: {
     table: 'announcements',

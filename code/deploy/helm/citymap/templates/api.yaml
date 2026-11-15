@@ -59,14 +59,14 @@ spec:
             {{- end }}
           readinessProbe:
             httpGet:
-              path: {{ .Values.api.probes.path }}
+              path: {{ .Values.api.probes.readinessPath }}
               port: http
             periodSeconds: {{ .Values.api.probes.periodSeconds }}
             timeoutSeconds: {{ .Values.api.probes.timeoutSeconds }}
             failureThreshold: {{ .Values.api.probes.failureThreshold }}
           livenessProbe:
             httpGet:
-              path: {{ .Values.api.probes.path }}
+              path: {{ .Values.api.probes.livenessPath }}
               port: http
             periodSeconds: {{ .Values.api.probes.periodSeconds }}
             timeoutSeconds: {{ .Values.api.probes.timeoutSeconds }}
