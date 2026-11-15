@@ -1,0 +1,36 @@
+# Suspended by default: datasets are published on demand with
+#   kubectl -n <ns> create job --from=cronjob/<release>-publisher publish-<id>
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: {{ .Release.Name }}-publisher
+  labels: {{- include "citymap.labels" . | nindent 4 }}
+spec:
+  schedule: {{ .Values.publisher.schedule | quote }}
+  suspend: {{ .Values.publisher.suspend }}
+  concurrencyPolicy: Forbid
+  jobTemplate:
+    spec:
+      backoffLimit: 2
+      ttlSecondsAfterFinished: 3600
+      template:
+        metadata:
+          labels:
+            app.kubernetes.io/name: publisher
+            {{- include "citymap.labels" . | nindent 12 }}
+        spec:
+          restartPolicy: Never
+          containers:
+            - name: publisher
+              image: {{ include "citymap.image" .Values.images.publisher }}
+              imagePullPolicy: {{ .Values.images.pullPolicy }}
+              env:
+                - name: DB_PASSWORD
+                  valueFrom:
+                    secretKeyRef:
+                      name: {{ .Release.Name }}-secrets
+                      key: db-password
+                - name: DATABASE_URL
+                  value: {{ include "citymap.databaseUrl" . | quote }}
+                - name: RACE_WEEKEND_START
+                  value: {{ .Values.publisher.raceWeekendStart | quote }}

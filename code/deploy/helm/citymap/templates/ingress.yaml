@@ -1,0 +1,27 @@
+{{- range $svc := list "api" "tiles" }}
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: {{ $.Release.Name }}-{{ $svc }}
+  labels: {{- include "citymap.labels" $ | nindent 4 }}
+  annotations:
+    nginx.ingress.kubernetes.io/use-regex: "true"
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
+    {{- toYaml $.Values.ingress.annotations | nindent 4 }}
+spec:
+  ingressClassName: {{ $.Values.ingress.className }}
+  rules:
+    - {{- with $.Values.ingress.host }}
+      host: {{ . }}
+      {{- end }}
+      http:
+        paths:
+          - path: /{{ $svc }}(/|$)(.*)
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: {{ $.Release.Name }}-{{ if eq $svc "api" }}api{{ else }}martin{{ end }}
+                port:
+                  name: http
+{{- end }}

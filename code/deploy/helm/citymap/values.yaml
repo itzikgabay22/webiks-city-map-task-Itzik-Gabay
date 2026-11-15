@@ -1,0 +1,88 @@
+images:
+  api:
+    repository: citymap-api
+    tag: "1.4.2"
+  publisher:
+    repository: citymap-publisher
+    tag: "1.1.0"
+  postgis:
+    repository: citymap-postgis
+    tag: "17-4"
+  martin:
+    repository: ghcr.io/maplibre/martin
+    tag: "1.16.1"
+  redis:
+    repository: redis
+    tag: "7.4.6-alpine"
+  pullPolicy: IfNotPresent
+
+secrets:
+  # Supplied at install time (see deploy/terraform/local).
+  dbPassword: ""
+  jwtSecret: ""
+
+api:
+  replicas: 2
+  port: 3000
+  env:
+    SUMMARY_CACHE_TTL: "120"
+    FEATURES_CACHE_TTL: "60"
+    ANNOUNCEMENTS_CACHE_TTL: "3600"
+    PARTNER_RATE_LIMIT: "600"
+  resources:
+    requests:
+      cpu: 500m
+      memory: 256Mi
+    limits:
+      cpu: "1"
+      memory: 1Gi
+  autoscaling:
+    enabled: true
+    minReplicas: 2
+    maxReplicas: 10
+    targetCPUUtilizationPercentage: 70
+  probes:
+    path: /health
+    periodSeconds: 10
+    timeoutSeconds: 2
+    failureThreshold: 3
+
+martin:
+  replicas: 1
+  # Contents of tiles/config.yaml (injected by deploy/terraform/local).
+  config: ""
+
+publisher:
+  schedule: "0 3 * * *"
+  suspend: true
+  raceWeekendStart: "2026-10-30"
+
+postgis:
+  database: citymap
+  user: citymap
+  storage: 2Gi
+  resources:
+    requests:
+      cpu: 500m
+      memory: 1Gi
+    limits:
+      cpu: "2"
+      memory: 2Gi
+
+redis:
+  maxmemory: 256mb
+  resources:
+    requests:
+      cpu: 50m
+      memory: 64Mi
+    limits:
+      cpu: 500m
+      memory: 384Mi
+
+ingress:
+  className: nginx
+  host: ""
+  annotations:
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "60"
+    nginx.ingress.kubernetes.io/proxy-send-timeout: "60"
+    nginx.ingress.kubernetes.io/proxy-body-size: "2m"

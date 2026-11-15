@@ -1,0 +1,6 @@
+apiVersion: v2
+name: citymap
+description: CityMap platform (API, tiles, publisher, PostGIS, Redis)
+type: application
+version: 0.7.0
+appVersion: "1.4.2"

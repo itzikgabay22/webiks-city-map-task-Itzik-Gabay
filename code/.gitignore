@@ -1,0 +1,11 @@
+node_modules/
+dist/
+.terraform/
+*.tfplan
+.env
+deploy/terraform/local/.helm/
+
+*.tfstate
+*.tfstate.*
+.DS_Store
+evidence/tmp/

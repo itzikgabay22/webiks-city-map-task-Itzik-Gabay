@@ -1,0 +1,16 @@
+=== R3: partner rate limit behaviour ===
+timestamp: 2026-11-15T19:37:31Z
+Configured PARTNER_RATE_LIMIT in values.yaml: 600 (client promise: 1000/partner)
+
+--- Burst 700 requests with KEY1 in ~10s; count status codes ---
+ 350 200
+ 350 500
+
+--- Immediately with KEY2 (different partner, same client IP) ---
+  25 200
+  25 500
+
+--- Sample RateLimit headers from KEY1 ---
+HTTP/1.1 200 OK
+RateLimit: "600-in-1min"; r=224; t=58
+RateLimit-Policy: "600-in-1min"; q=600; w=60; pk=:NGQwZmRkYzNlMDM1:

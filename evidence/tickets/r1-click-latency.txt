@@ -1,0 +1,24 @@
+=== R1: features/at latency north (coastal) vs south ===
+timestamp: 2026-11-15T19:37:29Z
+
+--- south lon=4.2 lat=-42.4 ---
+try=1 http=200 time_total=0.021313s size=526
+try=2 http=200 time_total=0.003698s size=526
+try=3 http=200 time_total=0.003796s size=526
+  features=2 layers=['admin_boundaries', 'admin_boundaries']
+  admin_boundary geom type=MultiPolygon approx_coords=5 props={'name': 'Palvera', 'region': 'South Central', 'population': 54935}
+  admin_boundary geom type=MultiPolygon approx_coords=5 props={'name': 'Zarvik', 'region': 'Central', 'population': 178717}
+
+--- north_coastal lon=4.0 lat=-40.3 ---
+try=1 http=200 time_total=0.007335s size=87
+try=2 http=200 time_total=0.003479s size=87
+try=3 http=200 time_total=0.003799s size=87
+  features=0 layers=[]
+
+--- north_coastal2 lon=3.8 lat=-40.4 ---
+try=1 http=200 time_total=0.295339s size=5555644
+try=2 http=200 time_total=0.240550s size=5555644
+try=3 http=200 time_total=0.183765s size=5555644
+  features=1 layers=['admin_boundaries']
+  admin_boundary geom type=MultiPolygon approx_coords=200001 props={'name': 'Tollara', 'region': 'North', 'population': 96000}
+
