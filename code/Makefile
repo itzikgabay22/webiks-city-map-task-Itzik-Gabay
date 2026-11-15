@@ -11,7 +11,7 @@ API_TAG    := 1.4.2
 PUB_TAG    := 1.1.0
 PG_TAG     := 17-4
 
-.PHONY: help cluster images deploy seed publish traffic peak soak status destroy
+.PHONY: help cluster images deploy seed publish traffic peak soak status destroy observe
 
 help: ## List targets
 	@grep -E '^[a-z-]+:.*## ' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*## "} {printf "  %-9s %s\n", $$1, $$2}'
@@ -48,6 +48,12 @@ peak: ## Peak traffic (MULTIPLIER=10 or 50, DURATION=5m)
 
 soak: ## Baseline traffic for a long run (DURATION=20m)
 	$(K6) run $(K6_FLAGS) -e BASE_URL=$(BASE_URL) -e SCENARIO=soak -e DURATION=$(or $(DURATION),20m) traffic/main.ts
+
+
+observe: ## Install Prometheus + Grafana (self-hosted) with dashboard and alert rules
+	kubectl apply -k deploy/observability
+	@echo "Grafana: kubectl -n observability port-forward svc/grafana 3001:3000"
+	@echo "Prometheus: kubectl -n observability port-forward svc/prometheus 9090:9090"
 
 status: ## Pods, autoscaler and jobs
 	kubectl -n $(NAMESPACE) get pods,hpa,jobs -o wide

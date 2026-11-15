@@ -1,0 +1,9 @@
+.DS_Store
+*.tfstate
+*.tfstate.*
+code/deploy/terraform/local/.terraform/
+.DS_Store
+*.tfstate
+*.tfstate.*
+code/deploy/terraform/local/.terraform/
+code/deploy/terraform/local/.helm/

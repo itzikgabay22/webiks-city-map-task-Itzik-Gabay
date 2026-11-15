@@ -1,18 +1,26 @@
 import 'reflect-metadata';
 import { NestFactory } from '@nestjs/core';
 import { NestExpressApplication } from '@nestjs/platform-express';
+import type { NextFunction, Request, Response } from 'express';
 import { rateLimit } from 'express-rate-limit';
 import Redis from 'ioredis';
 import { RedisReply, RedisStore } from 'rate-limit-redis';
 import { AppModule } from './app.module';
 import { RequestLoggingInterceptor } from './common/request-logging.interceptor';
 import { config } from './config';
+import { metricsHandler, metricsMiddleware } from './metrics';
 
 async function bootstrap(): Promise<void> {
   const app = await NestFactory.create<NestExpressApplication>(AppModule, { logger: ['log', 'warn', 'error'] });
 
   // Public data must be embeddable by any site (see docs/ARCHITECTURE.md).
   app.enableCors({ origin: '*', methods: ['GET', 'POST'], maxAge: 600 });
+
+  // Part 1.2 — Prometheus metrics (self-hosted scrape target).
+  app.use(metricsMiddleware);
+  app.use('/metrics', (req: Request, res: Response, next: NextFunction) => {
+    void metricsHandler(req, res).catch(next);
+  });
 
   // Partner API quota, shared by all API replicas through Redis.
   const limiterRedis = new Redis(config.redisUrl, { maxRetriesPerRequest: 2 });
