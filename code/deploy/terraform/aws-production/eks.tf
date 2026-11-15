@@ -24,15 +24,15 @@ resource "aws_eks_cluster" "main" {
   vpc_config {
     subnet_ids              = aws_subnet.private[*].id
     endpoint_private_access = true
-    endpoint_public_access  = true
-    public_access_cidrs     = ["0.0.0.0/0"]
+    # Landing zone: no public API endpoint; operators reach it via TGW / shared services.
+    endpoint_public_access = false
   }
 
   access_config {
     authentication_mode = "API"
   }
 
-  enabled_cluster_log_types = ["api", "audit", "authenticator"]
+  enabled_cluster_log_types = ["api", "audit", "authenticator", "controllerManager", "scheduler"]
 
   depends_on = [aws_iam_role_policy_attachment.cluster]
 }

@@ -1,12 +1,18 @@
 locals {
   origin_id = "citymap-ingress"
+  # Race week: cache static/tile traffic harder. Announcements stay short-TTL
+  # so a publish is visible without waiting for a full-day cache to expire.
+  api_default_ttl = var.race_week_mode ? 86400 : 60
+  api_max_ttl     = var.race_week_mode ? 86400 : 300
+  tile_ttl        = var.race_week_mode ? 86400 : 604800
 }
 
 resource "aws_cloudfront_distribution" "main" {
-  enabled         = true
-  comment         = "CityMap public endpoint"
-  price_class     = "PriceClass_100"
-  is_ipv6_enabled = true
+  enabled             = true
+  comment             = "CityMap public endpoint"
+  price_class         = "PriceClass_100"
+  is_ipv6_enabled     = true
+  wait_for_deployment = false
 
   origin {
     origin_id   = local.origin_id
@@ -21,7 +27,9 @@ resource "aws_cloudfront_distribution" "main" {
     }
   }
 
-  # Official datasets: cached according to the origin Cache-Control header.
+  # Official datasets must appear immediately after publish. Origin Cache-Control
+  # is 15s; CDN must not override that with a day-long TTL (client race-week plan
+  # applies to tiles/basemap pressure relief, not announcements).
   ordered_cache_behavior {
     path_pattern           = "/api/announcements/*"
     target_origin_id       = local.origin_id
@@ -31,11 +39,12 @@ resource "aws_cloudfront_distribution" "main" {
     compress               = true
 
     min_ttl     = 0
-    default_ttl = 86400
-    max_ttl     = 31536000
+    default_ttl = 0
+    max_ttl     = 60
 
     forwarded_values {
       query_string = false
+      headers      = ["Origin", "Access-Control-Request-Method", "Access-Control-Request-Headers"]
       cookies {
         forward = "none"
       }
@@ -51,14 +60,15 @@ resource "aws_cloudfront_distribution" "main" {
     compress               = true
 
     min_ttl     = 0
-    default_ttl = 60
-    max_ttl     = 300
+    default_ttl = local.api_default_ttl
+    max_ttl     = local.api_max_ttl
 
     forwarded_values {
       query_string = true
-      headers      = ["*"]
+      # Forward auth / partner key so private layers and quotas stay correct.
+      headers = ["Authorization", "X-Api-Key", "Origin", "Access-Control-Request-Method", "Access-Control-Request-Headers"]
       cookies {
-        forward = "all"
+        forward = "none"
       }
     }
   }
@@ -73,13 +83,14 @@ resource "aws_cloudfront_distribution" "main" {
     cached_methods         = ["GET", "HEAD"]
     compress               = true
 
-    min_ttl     = 604800
-    default_ttl = 604800
-    max_ttl     = 604800
+    min_ttl     = local.tile_ttl
+    default_ttl = local.tile_ttl
+    max_ttl     = local.tile_ttl
 
     forwarded_values {
       query_string            = true
       query_string_cache_keys = ["v"]
+      headers                 = ["Origin", "Access-Control-Request-Method", "Access-Control-Request-Headers"]
       cookies {
         forward = "none"
       }
@@ -92,6 +103,10 @@ resource "aws_cloudfront_distribution" "main" {
     allowed_methods        = ["GET", "HEAD", "OPTIONS"]
     cached_methods         = ["GET", "HEAD"]
     compress               = true
+
+    min_ttl     = var.race_week_mode ? 86400 : 60
+    default_ttl = var.race_week_mode ? 86400 : 60
+    max_ttl     = var.race_week_mode ? 86400 : 86400
 
     forwarded_values {
       query_string = false
@@ -111,3 +126,7 @@ resource "aws_cloudfront_distribution" "main" {
     cloudfront_default_certificate = true
   }
 }
+
+# Post-publish: operators run
+#   aws cloudfront create-invalidation --distribution-id ... --paths "/api/announcements/*"
+# immediately after the publisher Job succeeds (evening-news cutover).

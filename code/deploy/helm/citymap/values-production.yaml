@@ -1,0 +1,46 @@
+# Production overlays for announcement day / race weekend.
+# Applied on top of values.yaml in the workload cluster (not used by local terraform).
+
+api:
+  env:
+    SUMMARY_CACHE_TTL: "600"
+    FEATURES_CACHE_TTL: "60"
+    ANNOUNCEMENTS_CACHE_TTL: "15"
+    PARTNER_RATE_LIMIT: "1000"
+    DB_POOL_MAX: "40"
+  resources:
+    requests:
+      cpu: "1"
+      memory: 512Mi
+    limits:
+      cpu: "2"
+      memory: 2Gi
+  autoscaling:
+    enabled: true
+    minReplicas: 6
+    maxReplicas: 30
+    targetCPUUtilizationPercentage: 60
+
+martin:
+  replicas: 4
+
+postgis:
+  # In AWS, PostGIS is RDS (see deploy/terraform/aws-production). These local
+  # chart values document the in-cluster sizing we measured against.
+  resources:
+    requests:
+      cpu: "2"
+      memory: 4Gi
+    limits:
+      cpu: "4"
+      memory: 8Gi
+
+redis:
+  maxmemory: 2gb
+  resources:
+    requests:
+      cpu: 200m
+      memory: 1Gi
+    limits:
+      cpu: "1"
+      memory: 3Gi
