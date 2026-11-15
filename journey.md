@@ -161,11 +161,12 @@ Documented in `READINESS.md`: ~$3.5–5k/mo ballpark; trade-off = large Multi-AZ
 
 ## Commit map (exercise steps)
 
-See `git log` — one commit per step:
-1. Baseline import  
-2. Observability  
-3. Ticket evidence  
-4. Ticket fixes (minimal API/Helm)  
-5. Load-test results + capacity  
-6. AWS production / CONSTRAINTS / terraform tests  
-7. Readiness docs + journey + race-week notes  
+```
+fef8482 docs: readiness report, solution log, journey, and race-week runbook
+df7b55c Part 2: align aws-production with landing-zone CONSTRAINTS
+b8522f0 Part 1.4: commit load-test results and capacity statement
+9c03d2a Part 1.3: minimal fixes for tickets R1, R2, and R3
+3d0369f Part 1.3: record ticket investigation evidence (R1/R2/R3)
+0eee0d1 Part 1.2: add self-hosted Prometheus/Grafana observability
+a61abbc chore: import CityMap reliability task baseline
+```
