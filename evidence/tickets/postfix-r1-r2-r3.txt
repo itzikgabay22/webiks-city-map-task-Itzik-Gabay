@@ -1,0 +1,16 @@
+=== Post-fix R1 ===
+north_click time=0.146293s size=54199
+admin coords 1943 props {'name': 'Tollara', 'region': 'North', 'population': 96000}
+
+=== Post-fix summary timing ===
+admin_summary_uncached=1.032857s
+
+=== Post-fix R3: per-key quota 1000 ===
+KEY1 after 1005 reqs: 200=1000 429=5 other=0
+KEY2 (should still have its own 1000 budget):
+HTTP/1.1 200 OK
+RateLimit: "1000-in-1min"; r=999; t=60
+RateLimit-Policy: "1000-in-1min"; q=1000; w=60; pk=:Mzk5YmI1Y2I4ZDE1:
+
+ratelimit:partner:key:fa9945e4995debdd4700c676e2ac33f60a7fd4631fd16a02e8d17bbe98d7f1a7
+ratelimit:partner:key:be65d997c638d88bf17d40c1a3aedc0b992e46fec2d3340d986c5b48c78abd63

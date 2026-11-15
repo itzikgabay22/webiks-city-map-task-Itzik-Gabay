@@ -22,3 +22,4 @@ try=3 http=200 time_total=0.183765s size=5555644
   features=1 layers=['admin_boundaries']
   admin_boundary geom type=MultiPolygon approx_coords=200001 props={'name': 'Tollara', 'region': 'North', 'population': 96000}
 
+cold_north_click time=0.254714s size=5555644

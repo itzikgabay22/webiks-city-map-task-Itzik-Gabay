@@ -1,0 +1,26 @@
+=== R2: admin_boundaries summary cost vs SUMMARY_CACHE_TTL=120s ===
+timestamp: 2026-11-15T19:41:06Z
+Hypothesis: every ~2 minutes cache expires; ST_Area/ST_Perimeter(::geography) on 900k-vertex coastal districts stalls Postgres and the shared API pool.
+
+--- Single summary query timing (from psql) ---
+Timing is on.
+    region     | boundary_km | vertices 
+---------------+-------------+----------
+ North         |       64610 |   900034
+ North Central |        2448 |       50
+ Central       |        2440 |       50
+ South Central |        2432 |       50
+ South         |        2424 |       50
+(5 rows)
+
+Time: 489.201 ms
+
+--- Uncached HTTP /layers/admin_boundaries/summary (flush redis key) ---
+uncached summary time_total=0.961591s http=200
+cached summary time_total=0.018328s http=200
+
+--- Concurrent page-load style (4 summaries) while forcing admin cache miss ---
+wall_clock_s=
+
+--- Broken partner replica: Redis MaxRetriesPerRequestError on citymap-api-...wn9g8 (see kubectl logs) ---
+Rate limiter uses a dedicated ioredis client with maxRetriesPerRequest=2; when that socket dies, /partner returns 500 (looks like partner blocked).
