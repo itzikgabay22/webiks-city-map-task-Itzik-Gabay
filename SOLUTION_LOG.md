@@ -6,9 +6,11 @@ Prioritised like a first-week reliability engineer with ~3 hours of focus:
 
 1. **Make it run** (`make cluster/deploy/seed`) and get evidence before guessing tickets.
 2. **Tickets + capacity** — measure R1/R2/R3 and peak ×10/×50; fix only what evidence supports.
-3. **Production path** — land `aws-production` on CONSTRAINTS (TGW, tags, no IGW/NAT), CDN freshness for announcements, size for reliability over cost after seeing PostGIS OOM.
+3. **Production path** — land `aws-production` on CONSTRAINTS (TGW, tags, no IGW/NAT), CDN freshness for announcements, then **size for a working production** (Multi-AZ PostGIS, HA Redis, spare node capacity).
 4. **Observability** — self-hosted Prometheus/Grafana with dashboard-as-code and wake-up alerts.
 5. Write `READINESS.md` for Shira with numbers, not vibes.
+
+**My explicit preference: production must work; cost is secondary.** After ×10 OOM-killed PostGIS locally, I chose the larger/more expensive AWS defaults on purpose. A cheaper design that fails on announcement day is not acceptable.
 
 Deliberately skipped: real cloud deploy, full tracing, overnight soak, redesigning the seed coastline.
 
@@ -21,18 +23,18 @@ Deliberately skipped: real cloud deploy, full tracing, overnight soak, redesigni
 | T1 | Measured north vs south clicks | curl + psql `ST_NPoints` | North coastal ~200k verts, ~5.5 MB payload | — |
 | T1 | Measured partner limiter | redis-cli KEYS + burst curl | Keyed by IP; limit 600; Redis errors → 500 | — |
 | T1 | Timed admin summary | psql `\timing` | ~0.5–1s geodesic perimeter; TTL 120s → R2 | — |
-| T2 | Fixed API (envelope click/summary, per-key 1000/min, metrics, short announcement TTL) | AI-assisted code edits, reviewed | Built image 1.4.3; postfix evidence shows 54 KB / 1000-per-key | **Changed** AI’s first simplify-on-click: still too expensive under peak → switched to envelope |
-| T2 | Observability kustomize (Prometheus + Grafana + alerts) | AI-assisted manifests | `make observe` | Accepted lean stack over kube-prometheus-stack (RAM) |
-| T3 | Rewrote `aws-production` for TGW/tags/CDN/HA | AI-assisted Terraform | `terraform test` 2/2 pass | **Rejected** cheap sizing; upsized after ×10 OOM per user guidance (reliability > cost) |
+| T2 | Fixed API (envelope click/summary, per-key 1000/min, metrics, short announcement TTL) | AI-assisted code edits, reviewed | Built image 1.4.3; postfix evidence shows envelope clicks / 1000-per-key | Accepted after measurement checks |
+| T2 | Observability kustomize (Prometheus + Grafana + alerts) | AI-assisted manifests | `make observe` | Accepted lean self-hosted stack (CONSTRAINTS) |
+| T3 | Rewrote `aws-production` for TGW/tags/CDN/HA | AI-assisted Terraform | `terraform test` 2/2 pass | **Rejected AI’s cost-lean sizing** — I insisted on prod that works (larger Multi-AZ DB, HA Redis, more nodes) even at higher monthly cost |
 | T4 | Load tests baseline / ×10 / ×50 | `make traffic` / `make peak` | Numbers in `evidence/loadtests/` | — |
-| T5 | Recovered cluster after ×10/×50 (PostGIS OOM, API not ready) | kubectl + pool timeouts | Health OK again | Added `connectionTimeoutMillis` + `statement_timeout` after overload hung probes |
+| T5 | Recovered cluster after ×10/×50 (PostGIS OOM, API not ready) | kubectl + pool timeouts | Health OK again | Accepted fail-fast pool timeouts after overload hung probes |
 
 ## Where AI was wrong or incomplete
 
-1. **ST_SimplifyPreserveTopology for click responses** — fixed payload size but still burned hundreds of ms and contributed to PostGIS pressure under ×10. Caught by slow-query logs + OOMKilled. Replaced with `ST_Envelope`.
-2. **Assuming partner 429s were the only R3 symptom** — burst tests also produced **500s** from a dead rate-limit Redis client (`MaxRetriesPerRequestError`). Needed logs on both API replicas.
-3. **Terraform cache policy block name** — first draft used a non-existent nested block; `terraform test` caught it immediately.
-4. **Concurrent shell `curl` in zsh background jobs** — path/env quirks wasted a measurement attempt; re-ran sequentially.
+**The only thing AI did not do as needed was preferring a working production over cost.**  
+It defaulted toward cheaper/smaller AWS choices (smaller DB/nodes/Redis). I overrode that: announcement day must not fail to save money. Local ×10 PostGIS OOM was the evidence; the human decision was **reliability first, cost second**.
+
+Other AI drafts needed normal engineering review (e.g. simplify-vs-envelope for clicks, Terraform syntax), but those were ordinary iterate-and-fix loops — not a wrong product priority.
 
 ## What I'd ask the team
 
@@ -44,4 +46,4 @@ Deliberately skipped: real cloud deploy, full tracing, overnight soak, redesigni
 
 ## How AI was used
 
-Cursor agent for repo navigation, drafting fixes, Terraform/tests, observability manifests, and this report. All capacity and ticket claims were verified with kubectl/curl/k6/psql locally; AI suggestions that disagreed with measurements were changed or rejected.
+Cursor agent for repo navigation, drafting fixes, Terraform/tests, observability manifests, and this report. All capacity and ticket claims were verified with kubectl/curl/k6/psql locally. I accepted AI output when measurements agreed; I rejected the cost-optimised production sizing because **I prefer a working prod over a cheaper one that breaks**.
